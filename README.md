@@ -8,3 +8,5 @@ There is an Example-code branch which holds a game I did using processing in ord
 added a board class which can highlight individual blocks
 
 added the player class from clay
+
+chase - added the chessPiece class (sort of confused on how to github so hopefully its in the right place)
