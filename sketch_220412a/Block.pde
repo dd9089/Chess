@@ -3,12 +3,13 @@ class Block
  PImage fire;
  int xCordinate, yCordinate;
  boolean clicked = false;
+ color c, outline;
  
  Block(int x, int y)
  {
    xCordinate = x;
    yCordinate = y;
-   
+   outline = 0;
  }
  
  void update(int x, int y)
@@ -25,7 +26,10 @@ class Block
  
  void drawBlock()
  {
-    rect(xCordinate, yCordinate, 100, 100);
+   strokeWeight(2);
+   stroke(outline);
+   fill(c);
+   rect(xCordinate, yCordinate, 98, 98);
  }
  
  void setClicked(boolean c)
@@ -36,5 +40,15 @@ class Block
  boolean getClicked()
  {
   return clicked; 
+ }
+ 
+ void setColor(color RGB)
+ {
+  c = RGB; 
+ }
+ 
+ void highlight()
+ {
+   outline = 255;
  }
 }

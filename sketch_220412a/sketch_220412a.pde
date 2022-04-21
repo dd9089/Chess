@@ -1,7 +1,7 @@
 boolean win = false;
 Block[] bl = new Block[64];
 
-int count = 0;
+int count = 0, reset = 1;
 
 
 void setup()
@@ -12,12 +12,27 @@ void setup()
   
   for (int y = 0; y < 800; y += 100)
   {
-    for (int x = 250; x < 1050; x += 100)
+    for (int x = 200; x < 1000; x += 100)
     {
       
       bl[count] = new Block(x, y);
       count++;
     }
+  }
+  
+  for (int x = 0; x < 64; x++)
+  {
+    if (count % 8 == 0)
+      reset++;
+    if (count % 2 == 0 && reset % 2 == 0)
+      bl[x].setColor(color(196,150,120));
+    else if (reset % 2 == 0)
+      bl[x].setColor(0);
+    else if (count % 2 == 0)
+      bl[x].setColor(0);
+    else
+      bl[x].setColor(color(196,150,120));
+    count++;
   }
 }
 
@@ -27,10 +42,6 @@ void draw()
  
  for(int x = 0; x < 64; x++)
  {
-   if ((x + 1) % 2 == 0)
-     fill(color(196,150,120));
-   else
-     fill(0);
    bl[x].drawBlock(); 
  }
 }
@@ -46,6 +57,7 @@ void mousePressed()
     if (bl[z].isBlock(x, y))
     {
       bl[z].setClicked(true); 
+      bl[z].highlight();
       println("block " + z + " " + bl[z].getClicked());
     }
   }
