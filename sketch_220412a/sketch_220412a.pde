@@ -1,6 +1,5 @@
 boolean win = false;
 Block[] bl = new Block[64];
-//(color(196,150,120)) wood brown
 
 int count = 0, reset = 1, previousClicked = 0;
 
