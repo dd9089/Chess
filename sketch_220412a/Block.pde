@@ -1,6 +1,5 @@
 class Block
 {
- PImage fire;
  int xCordinate, yCordinate;
  boolean clicked = false;
  color c, outline;
@@ -14,7 +13,7 @@ class Block
  
  void update(int x, int y)
  {
-  //image (fire, x, y, 100, 100);
+   
  }
  
  boolean isBlock(int x, int y)
@@ -50,5 +49,10 @@ class Block
  void highlight()
  {
    outline = 255;
+ }
+
+ void unHighlight()
+ {
+  outline = 0; 
  }
 }

@@ -1,7 +1,8 @@
 boolean win = false;
 Block[] bl = new Block[64];
+//(color(196,150,120)) wood brown
 
-int count = 0, reset = 1;
+int count = 0, reset = 1, previousClicked = 0;
 
 
 void setup()
@@ -12,7 +13,7 @@ void setup()
   
   for (int y = 0; y < 800; y += 100)
   {
-    for (int x = 200; x < 1000; x += 100)
+    for (int x = 300; x < 1100; x += 100)
     {
       
       bl[count] = new Block(x, y);
@@ -25,13 +26,13 @@ void setup()
     if (count % 8 == 0)
       reset++;
     if (count % 2 == 0 && reset % 2 == 0)
-      bl[x].setColor(color(196,150,120));
+      bl[x].setColor(color(177,107,58));
     else if (reset % 2 == 0)
-      bl[x].setColor(0);
+      bl[x].setColor(color(77,26,34));
     else if (count % 2 == 0)
-      bl[x].setColor(0);
+      bl[x].setColor(color(77,26,34));
     else
-      bl[x].setColor(color(196,150,120));
+      bl[x].setColor(color(177,107,58));
     count++;
   }
 }
@@ -44,6 +45,7 @@ void draw()
  {
    bl[x].drawBlock(); 
  }
+  hoover();
 }
 
 void mousePressed()
@@ -51,39 +53,31 @@ void mousePressed()
   int x = (int) (mouseX / 100) * 100;
   int y = (int) (mouseY / 100) * 100;
    
-  
+   bl[previousClicked].setClicked(false);
+   
   for (int z = 0; z < 64; z++)
   {
     if (bl[z].isBlock(x, y))
     {
       bl[z].setClicked(true); 
       bl[z].highlight();
-      println("block " + z + " " + bl[z].getClicked());
+      previousClicked = z;
     }
   }
 }
 
-void Rand(int[] num, int max, int min)
+void hoover()
 {
-  int temp;
-   
-  for (int x = 0; x < 5; x++)
+  int x = (int) (mouseX / 100) * 100;
+  int y = (int) (mouseY / 100) * 100; 
+  
+  //println(x + "\t" + y);
+  
+  for (int z = 0; z < 64; z++)
   {
-    temp = (int) (Math.random() * max) + 1;
-    
-    if (checkNum(temp, num) && temp >= min)
-      num[x] = temp;
-    else
-      x--;
+    if (bl[z].isBlock(x, y))
+      bl[z].highlight(); 
+    else if (!bl[z].getClicked())
+      bl[z].unHighlight();
   }
-}
-
-boolean checkNum(int x, int[] num)
-{
-  for(int y: num)
-  {
-    if(x == y)
-      return false;
-  }
-  return true;
 }
