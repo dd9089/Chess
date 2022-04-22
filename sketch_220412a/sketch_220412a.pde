@@ -1,50 +1,20 @@
 boolean win = false;
-Block[] bl = new Block[64];
-
-int count = 0, reset = 1, previousClicked = 0;
+int previousClickedX = 0, previousClickedY = 0;
+Board board = new Board();
 
 
 void setup()
 {
   fullScreen();
   //size(500, 571);
- 
   
-  for (int y = 0; y < 800; y += 100)
-  {
-    for (int x = 300; x < 1100; x += 100)
-    {
-      
-      bl[count] = new Block(x, y);
-      count++;
-    }
-  }
-  
-  for (int x = 0; x < 64; x++)
-  {
-    if (count % 8 == 0)
-      reset++;
-    if (count % 2 == 0 && reset % 2 == 0)
-      bl[x].setColor(color(177,107,58));
-    else if (reset % 2 == 0)
-      bl[x].setColor(color(77,26,34));
-    else if (count % 2 == 0)
-      bl[x].setColor(color(77,26,34));
-    else
-      bl[x].setColor(color(177,107,58));
-    count++;
-  }
+  board.makeBoard();
 }
 
 void draw()
 {
  background(color(150,150,150));
- 
- for(int x = 0; x < 64; x++)
- {
-   bl[x].drawBlock(); 
- }
-  hoover();
+ board.drawBoard();
 }
 
 void mousePressed()
@@ -52,31 +22,19 @@ void mousePressed()
   int x = (int) (mouseX / 100) * 100;
   int y = (int) (mouseY / 100) * 100;
    
-   bl[previousClicked].setClicked(false);
+   board.bl[previousClickedX][previousClickedY].setClicked(false);
    
-  for (int z = 0; z < 64; z++)
+  for (int z = 0; z < 8; z++)
   {
-    if (bl[z].isBlock(x, y))
+    for (int w = 0; w < 8; w++)
     {
-      bl[z].setClicked(true); 
-      bl[z].highlight();
-      previousClicked = z;
+      if (board.bl[z][w].isBlock(x, y))
+      {
+        board.bl[z][w].setClicked(true); 
+        board.bl[z][w].highlight();
+        previousClickedX = z;
+        previousClickedY = w;
+      }
     }
-  }
-}
-
-void hoover()
-{
-  int x = (int) (mouseX / 100) * 100;
-  int y = (int) (mouseY / 100) * 100; 
-  
-  //println(x + "\t" + y);
-  
-  for (int z = 0; z < 64; z++)
-  {
-    if (bl[z].isBlock(x, y))
-      bl[z].highlight(); 
-    else if (!bl[z].getClicked())
-      bl[z].unHighlight();
   }
 }

@@ -6,7 +6,7 @@ class Player
 {
   //vars
   private int playerNum;
-  //private Piece[] playerPieces; // piece class does not exist yet
+  private Piece[] playerPieces; // piece class does not exist yet
   private boolean isTurn = false;
 
   public Player(int num)
@@ -24,6 +24,7 @@ class Player
   {
     if(playerNum == 1)
     {
+     playerPieces[0] = new Pawn(0, 200, 0);
       /*
       At this point all the peices for the white player should be created and set on the board
       while being added to the array of player peices for player 1
