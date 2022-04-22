@@ -10,9 +10,9 @@ public class chessPiece{
 
 
 	//Constructor
-		public chessPiece(String color, int x, int y)
+		public chessPiece(String c, int x, int y)
 		{
-			pieceColor = color;
+			pieceColor = c;
 			xLocation = x;
 			yLocation = y;
 		}
@@ -68,6 +68,13 @@ public class chessPiece{
 			//Sets itself as captured
 			isCaptured = true;
 		}
+	
+		public void setPieceColor(String c)
+		{
+			//Set color of peice
+			pieceColor = c;
+		}
+			
 
 
 
