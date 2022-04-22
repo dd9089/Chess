@@ -7,6 +7,7 @@ class Piece{
     private int xLocation;
     private int yLocation;
     private boolean isCaptured = false;
+    PImage pawn;
 
 
   //Constructor
