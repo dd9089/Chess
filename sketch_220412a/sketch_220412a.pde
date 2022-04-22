@@ -30,6 +30,7 @@ void mousePressed()
     {
       if (board.bl[z][w].isBlock(x, y))
       {
+        println("Board: (" + z + ", " + w + ") was clicked");
         board.bl[z][w].setClicked(true); 
         board.bl[z][w].highlight();
         previousClickedX = z;

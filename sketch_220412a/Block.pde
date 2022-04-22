@@ -1,8 +1,8 @@
 class Block
 {
- int xCordinate, yCordinate;
- boolean clicked = false;
- color c, outline;
+ private int xCordinate, yCordinate;
+ private boolean clicked = false;
+ private color c, outline;
  
  Block(int x, int y)
  {
@@ -54,5 +54,15 @@ class Block
  void unHighlight()
  {
   outline = 0; 
+ }
+ 
+ int getXcordinate()
+ {
+  return xCordinate; 
+ }
+ 
+ int getYcordinate()
+ {
+  return yCordinate; 
  }
 }

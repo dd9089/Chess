@@ -8,8 +8,7 @@ class Board
    for (int y = 0; y < 800; y += 100)
    {
     for (int x = 300; x < 1100; x += 100)
-    {
-      
+    {        
       bl[countX][countY] = new Block(x, y);
       countX++;
     }
@@ -42,6 +41,8 @@ class Board
     {
       for (int y = 0; y < 8; y++)
       {
+        if (x == 0 && y == 2)
+          drawPawn(bl[x][y].getXcordinate(), bl[x][y].getYcordinate());
        bl[x][y].drawBlock();
       }
     }
@@ -53,7 +54,6 @@ class Board
     int x = (int) (mouseX / 100) * 100;
     int y = (int) (mouseY / 100) * 100; 
     
-    //println(x + "\t" + y);
     
     for (int z = 0; z < 8; z++)
     {
