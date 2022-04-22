@@ -6,15 +6,15 @@ public class chessPiece{
 		private String pieceColor;
 		private int xLocation;
 		private int yLocation;
-		private int isCaptured = false;
+		private boolean isCaptured = false;
 
 
 	//Constructor
-		public chessPiece(String color, int xLocation, int yLocation)
+		public chessPiece(String color, int x, int y)
 		{
 			pieceColor = color;
-			xLocation = xLocation;
-			yLocation = yLocation;
+			xLocation = x;
+			yLocation = y;
 		}
 
 	//Methods
