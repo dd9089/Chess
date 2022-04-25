@@ -6,7 +6,7 @@ public class chessPiece{
 		private String pieceColor;
 		private int xLocation;
 		private int yLocation;
-		private int isCaptured = false;
+		private boolean isCaptured = false;
 
 
 	//Constructor
