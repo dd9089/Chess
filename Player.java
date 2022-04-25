@@ -1,12 +1,13 @@
 //player class
 //made by clay on 4/20/2022
 //this is not completed and will need peice classes before it can be worked on more
+import java.util.ArrayList;
 
 public class Player
 {
 	//vars
 	private int playerNum;
-	private Piece[] playerPieces; // piece class does not exist yet
+	private ArrayList(Piece) playerPieces; // piece class does not exist yet
 	private boolean isTurn = false;
 
 	public Player(int num)
@@ -24,16 +25,35 @@ public class Player
 	{
 		if(playerNum == 1)
 		{
-			/*
-			At this point all the peices for the white player should be created and set on the board
-			while being added to the array of player peices for player 1
-			*/
+			playerPieces.add(new Rook("White", 7, 0));
+			playerPieces.add(new Knight("White", 7, 1));
+			playerPieces.add(new Bishop("White", 7, 2));
+			playerPieces.add(new Queen("White", 7, 3));
+			playerPieces.add(new King("White", 7, 4));
+			playerPieces.add(new Bishop("White", 7, 5));
+			playerPieces.add(new Knight("White", 7, 6));
+			playerPieces.add(new Rook("White", 7, 7));
+			
+			for(int i = 0; i < 8; i++)
+			{
+				playerPieces.add(new Pawn("White", 6, i));
+			}
 		}
 		else if(playerNum == 2)
 		{
-			/*
-			This should do the same process as the first part but instead for black peices for player 2
-			*/
+			playerPieces.add(new Rook("Black", 0, 0));
+			playerPieces.add(new Knight("Black", 0, 1));
+			playerPieces.add(new Bishop("Black", 0, 2));
+			playerPieces.add(new Queen("Black", 0, 3));
+			playerPieces.add(new King("Black", 0, 4));
+			playerPieces.add(new Bishop("Black", 0, 5));
+			playerPieces.add(new Knight("Black", 0, 6));
+			playerPieces.add(new Rook("Black", 0, 7));
+			
+			for(int i = 0; i < 8; i++)
+			{
+				playerPieces.add(new Pawn("Black", 1, i));
+			}
 		}
 	}
 
