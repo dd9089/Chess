@@ -10,11 +10,11 @@ public class chessPiece{
 
 
 	//Constructor
-		public chessPiece(String color, int xLocation, int yLocation)
+		public chessPiece(String color, int x, int y)
 		{
 			pieceColor = color;
-			xLocation = xLocation;
-			yLocation = yLocation;
+			xLocation = x;
+			yLocation = y;
 		}
 
 	//Methods
