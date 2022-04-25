@@ -68,6 +68,51 @@ public class chessPiece{
 			//Sets itself as captured
 			isCaptured = true;
 		}
+	
+		//Is valid move method
+		public boolean checkSpotValid(int x, int y)
+		{
+			if(x == this.getXLocation() || y == this.getYLocation())
+			{
+				return false;
+			}
+
+
+			if(x > this.getXLocation() && y > this.getYLocation())
+			{
+				for(int ix = this.getXLocation() + 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y++)
+				{
+					//here the spot at x, y needs to check if there is a piece
+				}
+				return false;
+			}
+			else if(x > this.getXLocation() && y < this.getYLocation())
+			{
+				for(int ix = this.getXLocation() + 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y--)
+				{
+					//here the spot at x, y needs to check if there is a piece
+				}
+				return false;
+			}
+			else if(x < this.getXLocation() && y > this.getYLocation())
+			{
+				for(int ix = this.getXLocation() - 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y++)
+				{
+					//here the spot at x, y needs to check if there is a piece
+				}
+				return false;
+			}
+			else if(x < this.getXLocation() && y < this.getYLocation())
+			{
+				for(int ix = this.getXLocation() - 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y--)
+				{
+					//here the spot at x, y needs to check if there is a piece
+				}
+				return false;
+			}
+
+			return false;
+		}//end is valid move
 
 
 
