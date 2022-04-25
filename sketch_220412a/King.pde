@@ -1,17 +1,16 @@
-//Pawn chess piece subclass
-//Made by Chase on 4/22
+//King chess piece subclass
+//Made by Chase on 4/25
 
-public class Pawn extends Piece
+public class King extends Piece
 {
   //Variables
-  private String pieceName = "Pawn";
+  private String pieceName = "King";
 
 
   //Constructor
-  public Pawn(String c, int x, int y)
+  public King(String c, int x, int y)
   {
-    super(c, x, y, "pawn");
-     
+    super(c, x, y, "king");
   }
 
 

@@ -1,11 +1,13 @@
-class Block
+public class Block
 {
  private int xCordinate, yCordinate;
  private boolean clicked = false;
  private color c, outline;
+ private int name;
  
- Block(int x, int y)
+ Block(int x, int y, int name)
  {
+   this.name = name;
    xCordinate = x;
    yCordinate = y;
    outline = 0;
@@ -64,5 +66,10 @@ class Block
  int getYcordinate()
  {
   return yCordinate; 
+ }
+ 
+ int getBlock()
+ {
+  return name;
  }
 }

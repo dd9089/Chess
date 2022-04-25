@@ -1,6 +1,7 @@
 boolean win = false;
 int previousClickedX = 0, previousClickedY = 0;
 Board board = new Board();
+Player p1 = new Player(1);
 
 
 void setup()
@@ -15,6 +16,7 @@ void draw()
 {
  background(color(150,150,150));
  board.drawBoard();
+ //p1.update();
 }
 
 void mousePressed()
@@ -30,7 +32,7 @@ void mousePressed()
     {
       if (board.bl[z][w].isBlock(x, y))
       {
-        println("Board: (" + z + ", " + w + ") was clicked");
+        println("Block: " + board.bl[z][w].getBlock() + " was clicked");
         board.bl[z][w].setClicked(true); 
         board.bl[z][w].highlight();
         previousClickedX = z;

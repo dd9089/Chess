@@ -6,7 +6,7 @@ class Player
 {
   //vars
   private int playerNum;
-  private ArrayList<Piece> playerPieces = new ArrayList<Piece>(); // piece class does not exist yet
+  private ArrayList<Piece> playerPieces = new ArrayList<Piece>();
   private boolean isTurn = false;
 
   public Player(int num)
@@ -24,7 +24,9 @@ class Player
   {
     if(playerNum == 1)
     {
-     playerPieces.add(new Pawn(0, 200, 0));
+      System.out.println("H");
+      Piece n = new Pawn("white", 200, 0);
+      playerPieces.add(n);
       /*
       At this point all the peices for the white player should be created and set on the board
       while being added to the array of player peices for player 1
@@ -67,5 +69,13 @@ class Player
     return null;
     //return playerPieces[0].getStatus();//for this line of code it is implied that the playerPieces[0] is the king
     //note that the king class and it's methods do not exist yet
+  }
+  
+  public void update()
+  {
+    for (Piece x: playerPieces)
+    {
+     x.drawPiece(); 
+    }
   }
 }

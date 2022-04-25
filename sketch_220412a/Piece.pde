@@ -3,19 +3,20 @@
 
 class Piece{
   //Variables
-    private int pieceColor;
+    private String pieceColor;
     private int xLocation;
     private int yLocation;
     private boolean isCaptured = false;
-    PImage pawn;
+    PImage piece;
 
 
   //Constructor
-    Piece(int pieceColor, int xLocation, int yLocation)
+    Piece(String pieceColor, int xLocation, int yLocation, String name)
     {
       this.pieceColor = pieceColor;
-      xLocation = xLocation;
-      yLocation = yLocation;
+      this.xLocation = xLocation;
+      this.yLocation = yLocation;
+      piece = loadImage(name + "_" + pieceColor);
     }
 
   //Methods
@@ -27,7 +28,7 @@ class Piece{
       return "regular piece";
     }
 
-    public int getPeiceColor()
+    public String getPeiceColor()
     {
       //Return color of peice
       return pieceColor;
@@ -70,6 +71,9 @@ class Piece{
       isCaptured = true;
     }
 
-
+    public void drawPiece()
+    {
+      image(piece, 200, 0);
+    }
 
 }//end of class
