@@ -21,7 +21,7 @@ public class Pawn extends chessPiece
 		return pieceName;
 	}
 
-	public void move()
+	public void move(int x, int y)
 	{
 
 	}
