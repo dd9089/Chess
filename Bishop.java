@@ -2,54 +2,25 @@
 
 public class Bishop extends chessPiece
 {
-
+	//variables
+	private String pieceName = "Bishop";
 	//constructor
 	public Bishop(String color, int xLocation, int yLocation)
 	{
 		super(color, xLocation, yLocation);
 	}
-
-	public boolean checkSpotValid(int x, int y)
+	
+	//Methods
+	public String getPieceName()
 	{
-		if(x == this.getXLocation() || y == this.getYLocation())
-		{
-			return false;
-		}
-
-
-		if(x > this.getXLocation() && y > this.getYLocation())
-		{
-			for(int ix = this.getXLocation() + 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y++)
-			{
-				//here the spot at x, y needs to check if there is a piece
-			}
-			return false;
-		}
-		else if(x > this.getXLocation() && y < this.getYLocation())
-		{
-			for(int ix = this.getXLocation() + 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y--)
-			{
-				//here the spot at x, y needs to check if there is a piece
-			}
-			return false;
-		}
-		else if(x < this.getXLocation() && y > this.getYLocation())
-		{
-			for(int ix = this.getXLocation() - 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y++)
-			{
-				//here the spot at x, y needs to check if there is a piece
-			}
-			return false;
-		}
-		else if(x < this.getXLocation() && y < this.getYLocation())
-		{
-			for(int ix = this.getXLocation() - 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y--)
-			{
-				//here the spot at x, y needs to check if there is a piece
-			}
-			return false;
-		}
-
-		return false;
+		//Obtain type of piece
+		return pieceName;
 	}
+
+	public void move()
+	{
+
+	}
+
+	
 }//end class
