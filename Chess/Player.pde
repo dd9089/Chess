@@ -24,8 +24,7 @@ class Player
   {
     if(playerNum == 1)
     {
-      System.out.println("H");
-      Piece n = new Pawn("white", 200, 0);
+      Piece n = new Pawn("white", 0, 0);
       playerPieces.add(n);
       /*
       At this point all the peices for the white player should be created and set on the board
@@ -75,7 +74,7 @@ class Player
   {
     for (Piece x: playerPieces)
     {
-     x.drawPiece(); 
+     x.drawPiece(board.getXcordinate(7), board.getYcordinate(7)); 
     }
   }
 }

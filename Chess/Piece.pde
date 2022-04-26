@@ -16,7 +16,7 @@ class Piece{
       this.pieceColor = pieceColor;
       this.xLocation = xLocation;
       this.yLocation = yLocation;
-      piece = loadImage(name + "_" + pieceColor);
+      piece = loadImage(name + "_" + pieceColor + ".png");
     }
 
   //Methods
@@ -71,9 +71,9 @@ class Piece{
       isCaptured = true;
     }
 
-    public void drawPiece()
+    public void drawPiece(int x, int y)
     {
-      image(piece, 200, 0);
+      image(piece, x, y, 98, 98);
     }
 
 }//end of class

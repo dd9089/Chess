@@ -30,7 +30,7 @@ public class Block
    strokeWeight(2);
    stroke(outline);
    fill(c);
-   rect(xCordinate, yCordinate, 98, 98);
+   rect(xCordinate, yCordinate, 98, 95);
  }
  
  void setClicked(boolean c)
