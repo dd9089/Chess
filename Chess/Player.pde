@@ -6,7 +6,7 @@ class Player
 {
   //vars
   private int playerNum;
-  private ArrayList<Piece> playerPieces = new ArrayList<Piece>();
+  private Piece[][] playerPieces = new Piece[8][8];
   private boolean isTurn = false;
 
   public Player(int num)
@@ -22,21 +22,39 @@ class Player
   //this method creates all the pieces
   private void createPieces()
   {
-    if(playerNum == 1)
+    for (int x = 0; x < 8; x++)
     {
-      Piece n = new Pawn("white", 0, 0);
-      playerPieces.add(n);
-      /*
-      At this point all the peices for the white player should be created and set on the board
-      while being added to the array of player peices for player 1
-      */
+     playerPieces[x][6] = new Pawn("white", 0, 0);
     }
-    else if(playerNum == 2)
+    playerPieces[0][7] = new Rook("white", 0, 0);
+    playerPieces[7][7] = new Rook("white", 0, 0);
+    playerPieces[1][7] = new Knight("white", 0, 0);
+    playerPieces[6][7] = new Knight("white", 0, 0);
+    playerPieces[2][7] = new Bishop("white", 0, 0);
+    playerPieces[5][7] = new Bishop("white", 0, 0);
+    playerPieces[3][7] = new Queen("white", 0, 0);
+    playerPieces[4][7] = new King("white", 0, 0);
+    /*
+    At this point all the peices for the white player should be created and set on the board
+    while being added to the array of player peices for player 1
+    */
+    
+    for (int x = 0; x < 8; x++)
     {
-      /*
-      This should do the same process as the first part but instead for black peices for player 2
-      */
+     playerPieces[x][1] = new Pawn("black", 0, 0);
     }
+    playerPieces[0][0] = new Rook("black", 0, 0);
+    playerPieces[7][0] = new Rook("black", 0, 0);
+    playerPieces[1][0] = new Knight("black", 0, 0);
+    playerPieces[6][0] = new Knight("black", 0, 0);
+    playerPieces[2][0] = new Bishop("black", 0, 0);
+    playerPieces[5][0] = new Bishop("black", 0, 0);
+    playerPieces[3][0] = new Queen("black", 0, 0);
+    playerPieces[4][0] = new King("black", 0, 0);
+    /*
+    At this point all the peices for the white player should be created and set on the board
+    while being added to the array of player peices for player 1
+    */
   }
 
   //this method is a players turn
@@ -72,9 +90,17 @@ class Player
   
   public void update()
   {
-    for (Piece x: playerPieces)
-    {
-     x.drawPiece(board.getXcordinate(7), board.getYcordinate(7)); 
-    }
+   for (int y = 0; y < 8; y++)
+   {
+     for (int x = 0; x < 8; x++)
+     {
+       try
+       {
+         playerPieces[x][y].drawPiece(board.getXcordinate(x), board.getYcordinate(y)); 
+       }
+       catch (Exception E){}
+     }
+   }
+   
   }
 }
