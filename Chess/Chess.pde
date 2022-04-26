@@ -23,7 +23,24 @@ void draw()
 void mousePressed()
 {
   int x = (int) (mouseX / 100) * 100;
-  int y = (int) (mouseY / 100) * 100;
+  int y;
+  
+  if (mouseY <= 97)
+    y = 0;
+  else if (mouseY <= 194)
+    y = 97;
+  else if (mouseY <= 291)
+    y = 194;
+  else if (mouseY <= 388)
+    y = 291;
+  else if (mouseY <= 485)
+    y = 388;
+  else if (mouseY <= 582)
+    y = 485;
+  else if (mouseY <= 679)
+    y = 582;
+  else
+    y = 679;
    
    board.bl[previousClickedX][previousClickedY].setClicked(false);
    

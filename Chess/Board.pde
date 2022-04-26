@@ -51,11 +51,24 @@ class Board
   void hover()
   {
     int x = (int) (mouseX / 100) * 100;
-    int y = ((int) (mouseY / 100) * 100) - (3 * ((int)((mouseY + 10)/ 100))); 
-    System.out.print((int)((mouseY + 10)/100) + "\t");
-    System.out.println(mouseY + " " + y + " " + bl[0][3].getYcordinate());
-    
-    
+    int y;
+    if (mouseY <= 97)
+      y = 0;
+    else if (mouseY <= 194)
+      y = 97;
+    else if (mouseY <= 291)
+      y = 194;
+    else if (mouseY <= 388)
+      y = 291;
+    else if (mouseY <= 485)
+      y = 388;
+    else if (mouseY <= 582)
+      y = 485;
+    else if (mouseY <= 679)
+      y = 582;
+    else
+      y = 679;
+
     for (int z = 0; z < 8; z++)
     {
       for (int w = 0; w < 8; w++)
