@@ -171,13 +171,12 @@ void mousePressed()
      previousClickedX = 7;
      previousClickedY = 8;
      
-   
      playerPieces[newX][newY].hasMoved();
-     System.out.println(playerPieces[newX][newY].getPieceColor() + " " + playerPieces[newX][newY].getFirstTurn());
+     board.bl[newX][newY].hidePossibleMoves();
     
 
      //System.out.println(playerPieces[0][0].getPieceName());
-     //drawPlayerPieces();
+     drawPlayerPieces();
   }
   
   void drawPlayerPieces()

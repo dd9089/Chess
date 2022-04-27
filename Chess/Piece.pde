@@ -6,7 +6,7 @@ class Piece{
     private String pieceColor;
     private int xLocation;
     private int yLocation;
-    private boolean isCaptured = false;
+    private boolean isCaptured = false, firstTurn;
     private String pieceName;
     private PImage piece;
 
@@ -19,6 +19,7 @@ class Piece{
       this.yLocation = yLocation;
       piece = loadImage(name + "_" + pieceColor + ".png");
       pieceName = "Piece";
+      firstTurn = true;
     }
 
   //Methods
@@ -53,6 +54,12 @@ class Piece{
       //Return if piece is captured
       return isCaptured;
     }
+    
+    public Boolean getFirstTurn()
+    {
+      return firstTurn;
+    }
+
 
     //Setters
     public void setXLocation(int x)
@@ -78,12 +85,11 @@ class Piece{
      yLocation = y;
     }
     
-    private void hasMoved(){}
-    private Boolean getFirstTurn()
+    public void hasMoved()
     {
-      return false;
+      firstTurn = false;
     }
-
+   
     public void setCaptured()
     {
       //Sets itself as captured

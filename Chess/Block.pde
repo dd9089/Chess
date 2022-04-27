@@ -2,7 +2,7 @@ public class Block
 {
  private int xCordinate, yCordinate;
  private boolean clicked;
- private color c, outline;
+ private color blockColor, outline, previousBlockColor;
  private int name;
  private boolean hasPiece;
  
@@ -12,6 +12,7 @@ public class Block
    xCordinate = x;
    yCordinate = y;
    outline = 0;
+   previousBlockColor = blockColor;
    clicked = false;
    hasPiece = false;
  }
@@ -32,7 +33,7 @@ public class Block
  {
    strokeWeight(2);
    stroke(outline);
-   fill(c);
+   fill(blockColor);
    rect(xCordinate, yCordinate, 98, 95);
  }
  
@@ -48,7 +49,7 @@ public class Block
  
  void setColor(color RGB)
  {
-  c = RGB; 
+  blockColor = RGB; 
  }
  
  void highlight()
@@ -63,8 +64,14 @@ public class Block
  
  void showPossibleMoves()
  {
+   previousBlockColor = blockColor;
    setColor(color(0, 255, 0));
  } 
+ 
+ void hidePossibleMoves()
+ {
+  setColor(previousBlockColor); 
+ }
  
  int getXcordinate()
  {
