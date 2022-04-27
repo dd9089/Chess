@@ -1,6 +1,6 @@
 class Board
 {
-  private Block[][] bl = new Block[8][8];
+  private Block[][] bl = new Block[8][9];
   private int count = 0, countX = 0, countY = 0, reset = 1;
  
  void makeBoard()
@@ -16,6 +16,7 @@ class Board
     countX = 0;
     countY++;
    }
+   bl[7][8] = new Block(1000, 100, 64);
    
    for (int x = 0; x < 8; x++)
    {

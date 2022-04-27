@@ -7,7 +7,8 @@ class Piece{
     private int xLocation;
     private int yLocation;
     private boolean isCaptured = false;
-    PImage piece;
+    private String pieceName;
+    private PImage piece;
 
 
   //Constructor
@@ -17,6 +18,7 @@ class Piece{
       this.xLocation = xLocation;
       this.yLocation = yLocation;
       piece = loadImage(name + "_" + pieceColor + ".png");
+      pieceName = "Piece";
     }
 
   //Methods
@@ -64,6 +66,17 @@ class Piece{
       //Set y location
       yLocation = y;
     }
+    
+    public void update(int x, int y)
+    {
+     xLocation = x;
+     yLocation = y;
+    }
+    
+    public String getPieceName()
+    {
+     return pieceName; 
+    }
 
     public void setCaptured()
     {
@@ -71,9 +84,13 @@ class Piece{
       isCaptured = true;
     }
 
-    public void drawPiece(int x, int y)
+    public void drawPiece()
     {
-      image(piece, x, y, 98, 98);
+      image(piece, board.bl[xLocation][yLocation].getXcordinate(), board.bl[xLocation][yLocation].getYcordinate(), 98, 98);
     }
-
+    
+    public String toString()
+    {
+      return pieceColor;//xLocation + " " + yLocation;
+    }
 }//end of class

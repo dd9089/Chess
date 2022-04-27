@@ -1,9 +1,10 @@
 public class Block
 {
  private int xCordinate, yCordinate;
- private boolean clicked = false;
+ private boolean clicked;
  private color c, outline;
  private int name;
+ private boolean hasPiece;
  
  Block(int x, int y, int name)
  {
@@ -11,6 +12,8 @@ public class Block
    xCordinate = x;
    yCordinate = y;
    outline = 0;
+   clicked = false;
+   hasPiece = false;
  }
  
  void update(int x, int y)
@@ -71,5 +74,15 @@ public class Block
  int getBlock()
  {
   return name;
+ }
+ 
+ boolean getHasPiece()
+ {
+  return hasPiece; 
+ }
+ 
+ void setHasPiece(boolean hasPiece)
+ {
+  this.hasPiece = hasPiece; 
  }
 }

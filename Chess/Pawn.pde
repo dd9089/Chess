@@ -5,6 +5,7 @@ public class Pawn extends Piece
 {
   //Variables
   private String pieceName = "Pawn";
+  private boolean firstTurn = true;
 
 
   //Constructor
@@ -24,7 +25,7 @@ public class Pawn extends Piece
 
   public void move(int x, int y)
   {
-
+    if (firstTurn){}
   }
 
 
