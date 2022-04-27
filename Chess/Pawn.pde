@@ -25,8 +25,29 @@ public class Pawn extends Piece
 
   public void move(int x, int y)
   {
-    if (firstTurn){}
+     int xCordinate = getXLocation();
+     int yCordinate = getYLocation();
+    if (firstTurn)
+    {
+      if (!board.bl[xCordinate][yCordinate - 1].getHasPiece())
+      {
+        board.bl[xCordinate][yCordinate - 1].showPossibleMoves();
+        if (!board.bl[xCordinate][yCordinate - 2].getHasPiece())
+          board.bl[xCordinate][yCordinate - 2].showPossibleMoves();
+      }
+    }
+  
+  }
+  
+  public boolean getFirstTurn()
+  {
+    System.out.print("H");
+    return firstTurn;
   }
 
+  public void hasMoved()
+  {
+   firstTurn = false; 
+  }
 
 }//end of class

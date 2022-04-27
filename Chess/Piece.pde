@@ -23,14 +23,14 @@ class Piece{
 
   //Methods
     //Getters
-    public String getPieceType()
+    public String getPieceName()
     {
       //THIS METHOD WILL BE OVERRIDEN BY THE SUBCLASSES
       //Return String name of peice
-      return "regular piece";
+      return pieceName;
     }
 
-    public String getPeiceColor()
+    public String getPieceColor()
     {
       //Return color of peice
       return pieceColor;
@@ -67,15 +67,21 @@ class Piece{
       yLocation = y;
     }
     
+    public void move(int x, int y)
+    {
+      System.out.println("K");
+    }
+    
     public void update(int x, int y)
     {
      xLocation = x;
      yLocation = y;
     }
     
-    public String getPieceName()
+    private void hasMoved(){}
+    private Boolean getFirstTurn()
     {
-     return pieceName; 
+      return false;
     }
 
     public void setCaptured()

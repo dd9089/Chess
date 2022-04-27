@@ -55,6 +55,8 @@ void mousePressed()
         {
           board.bl[z][w].setClicked(true); 
           board.bl[z][w].highlight();
+          playerPieces[z][w].move(x, y);
+
                     
           if (board.bl[previousClickedX][previousClickedY].getHasPiece())
           {
@@ -168,8 +170,14 @@ void mousePressed()
      playerPieces[newX][newY] = temp;
      previousClickedX = 7;
      previousClickedY = 8;
-     //System.out.println(playerPieces[x][y]);
-     drawPlayerPieces();
+     
+   
+     playerPieces[newX][newY].hasMoved();
+     System.out.println(playerPieces[newX][newY].getPieceColor() + " " + playerPieces[newX][newY].getFirstTurn());
+    
+
+     //System.out.println(playerPieces[0][0].getPieceName());
+     //drawPlayerPieces();
   }
   
   void drawPlayerPieces()

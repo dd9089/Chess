@@ -61,6 +61,11 @@ public class Block
   outline = 0; 
  }
  
+ void showPossibleMoves()
+ {
+   setColor(color(0, 255, 0));
+ } 
+ 
  int getXcordinate()
  {
   return xCordinate; 
