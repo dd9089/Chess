@@ -25,13 +25,25 @@ class Board
       if (count % 8 == 0)
         reset++;
       if (count % 2 == 0 && reset % 2 == 0)
+      {
         bl[x][y].setColor(color(177,107,58));
+        bl[x][y].setBackupColor(color(177,107,58));
+      }
       else if (reset % 2 == 0)
+      {
         bl[x][y].setColor(color(77,26,34));
+        bl[x][y].setBackupColor(color(77,26,34));
+      }
       else if (count % 2 == 0)
+      {
         bl[x][y].setColor(color(77,26,34));
+        bl[x][y].setBackupColor(color(77,26,34));
+      }
       else
+      {
         bl[x][y].setColor(color(177,107,58));
+        bl[x][y].setBackupColor(color(177,107,58));
+      }
       count++;
      }
   }
@@ -91,4 +103,22 @@ class Board
   {
    return bl[0][y].getYcordinate(); 
   }
+  
+  void showPossibleMoves(ArrayList<Block> blocky)
+ {
+   for ( Block b: blocky)
+   {
+     b.setColor(color(0, 255, 0));
+   }
+ } 
+ 
+ ArrayList<Block> hidePossibleMoves(ArrayList<Block> blocky)
+ {
+   for (Block b: blocky)
+   {
+      b.setColor(b.getBackupColor()); 
+   }
+   blocky.clear();
+   return blocky;   
+ }
 }

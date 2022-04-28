@@ -1,14 +1,17 @@
 boolean win = false;
 int previousClickedX = 7, previousClickedY = 8;
+
+// ArrayList to hold the generated possible moves for the piece selected
+ArrayList<Block> possibleMoves = new ArrayList<>();
 Board board;
 
+//creates the piece 2d array with extra spaces to be able to set previous clicked to something other than 0, 0
 Piece[][] playerPieces = new Piece[8][9];
 
 
 void setup()
 {
   fullScreen();
-  //size(500, 571);
   board = new Board();
   board.makeBoard();
   createPieces();
@@ -25,7 +28,7 @@ void mousePressed()
 {
   int x = (int) (mouseX / 100) * 100;
   int y;
-  
+    
   if (mouseY <= 97)
     y = 0;
   else if (mouseY <= 194)
@@ -44,48 +47,56 @@ void mousePressed()
     y = 679;
       
   board.bl[previousClickedX][previousClickedY].setClicked(false);
-        
-  for (int z = 0; z < 8; z++)
-  {
-    for (int w = 0; w < 8; w++)
-    {
-      if (board.bl[z][w].isBlock(x, y))
-      {
-        if (board.bl[z][w].getHasPiece())
-        {
-          board.bl[z][w].setClicked(true); 
-          board.bl[z][w].highlight();
-          playerPieces[z][w].move(x, y);
+  possibleMoves = board.hidePossibleMoves(possibleMoves);
 
-                    
-          if (board.bl[previousClickedX][previousClickedY].getHasPiece())
+  if (x >= 300 && x <= 1100)
+  {
+    for (int z = 0; z < 8; z++)
+    {
+      for (int w = 0; w < 8; w++)
+      {
+        if (board.bl[z][w].isBlock(x, y))
+        {
+          if (board.bl[z][w].getHasPiece())
           {
-            System.out.println(previousClickedX + " " + previousClickedY);
-            update(previousClickedX, previousClickedY, z, w);
+            board.bl[z][w].setClicked(true); 
+            board.bl[z][w].highlight();
+            playerPieces[z][w].genPossibleMoves(x, y);
+  
+                      
+            if (board.bl[previousClickedX][previousClickedY].getHasPiece())
+            {
+              System.out.println(previousClickedX + " " + previousClickedY);
+              update(previousClickedX, previousClickedY, z, w);
+            }
+            
+            else
+            {
+              previousClickedX = z;
+              previousClickedY = w; 
+            }
           }
+          
+          else if (board.bl[previousClickedX][previousClickedY].getHasPiece())
+            update(previousClickedX, previousClickedY, z, w);
           
           else
           {
+            //println("Block: " + board.bl[z][w].getBlock() + " was clicked");
+            board.bl[z][w].setClicked(true); 
+            board.bl[z][w].highlight();
             previousClickedX = z;
-            previousClickedY = w; 
+            previousClickedY = w;
           }
-        }
-        
-        else if (board.bl[previousClickedX][previousClickedY].getHasPiece())
-          update(previousClickedX, previousClickedY, z, w);
-        
-        else
-        {
-          //println("Block: " + board.bl[z][w].getBlock() + " was clicked");
-          board.bl[z][w].setClicked(true); 
-          board.bl[z][w].highlight();
-          previousClickedX = z;
-          previousClickedY = w;
         }
       }
     }
   }
-  
+  else
+  {
+    previousClickedX = 7;
+    previousClickedY = 8;
+  }
 }
 
  //this method creates all the pieces
@@ -125,11 +136,12 @@ void mousePressed()
     while being added to the array of player peices for player 1
     */
     
+    // tells starting blocks that they have a piece and its color
     for (int y = 0; y < 2; y++)
     {
      for (int x = 0; x < 8; x++)
      {
-       board.bl[x][y].setHasPiece(true);
+       board.bl[x][y].setHasPiece(true, "black");
      }
     }
     
@@ -137,11 +149,12 @@ void mousePressed()
     {
      for (int x = 0; x < 8; x++)
      {
-       board.bl[x][y].setHasPiece(true);
+       board.bl[x][y].setHasPiece(true, "white");
      }
     }
   }
   
+  // displays the pieces to the screen on top of the board
   void drawPieces()
   {
    for (int y = 0; y < 8; y++)
@@ -157,26 +170,34 @@ void mousePressed()
    }
   }
   
+  // moves the piece clicked to were you have clicked
   void update(int x, int y, int newX, int newY)
   {
-     Piece temp = playerPieces[x][y];
-     playerPieces[x][y].update(newX, newY);
-     
-     playerPieces[x][y] = null;
-     board.bl[x][y].setHasPiece(false);
-     board.bl[newX][newY].setHasPiece(true);
-     board.bl[x][y].setClicked(false);
-     
-     playerPieces[newX][newY] = temp;
-     previousClickedX = 7;
-     previousClickedY = 8;
-     
-     playerPieces[newX][newY].hasMoved();
-     board.bl[newX][newY].hidePossibleMoves();
-    
-
-     //System.out.println(playerPieces[0][0].getPieceName());
-     drawPlayerPieces();
+    if (!(newX == x) || !(newY == y))
+    {
+       Piece temp = playerPieces[x][y];
+       
+       // calls the update method in Piece class to change the piece's location
+       playerPieces[x][y].update(newX, newY);
+       
+       playerPieces[x][y] = null;
+       
+       // deletes the piece from its previous block and sets said block to not clicked
+       board.bl[x][y].setHasPiece(false, "");
+       board.bl[x][y].setClicked(false);
+       
+       // updates the 2d array of pieces and tells the block that it has a piece and its color
+       playerPieces[newX][newY] = temp;
+       board.bl[newX][newY].setHasPiece(true, playerPieces[newX][newY].getPieceColor());
+  
+       // sets previous clicked to neutral location
+       previousClickedX = 7;
+       previousClickedY = 8;
+       
+       playerPieces[newX][newY].hasMoved();
+       
+       drawPlayerPieces();
+    }
   }
   
   void drawPlayerPieces()

@@ -74,7 +74,7 @@ class Piece{
       yLocation = y;
     }
     
-    public void move(int x, int y)
+    public void genPossibleMoves(int x, int y)
     {
       System.out.println("K");
     }

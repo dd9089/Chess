@@ -1,10 +1,9 @@
 public class Block
 {
- private int xCordinate, yCordinate;
- private boolean clicked;
- private color blockColor, outline, previousBlockColor;
- private int name;
- private boolean hasPiece;
+ private int xCordinate, yCordinate, name;
+ private boolean clicked, hasPiece;
+ private color blockColor, outline, backupColor;
+ private String pieceColor;
  
  Block(int x, int y, int name)
  {
@@ -12,24 +11,24 @@ public class Block
    xCordinate = x;
    yCordinate = y;
    outline = 0;
-   previousBlockColor = blockColor;
    clicked = false;
    hasPiece = false;
+   pieceColor = "";
  }
  
- void update(int x, int y)
+ public void update(int x, int y)
  {
    
  }
  
- boolean isBlock(int x, int y)
+ public boolean isBlock(int x, int y)
  {
    if (x == xCordinate && y == yCordinate)
      return true;
    return false;
  }
  
- void drawBlock()
+ public void drawBlock()
  {
    strokeWeight(2);
    stroke(outline);
@@ -37,64 +36,74 @@ public class Block
    rect(xCordinate, yCordinate, 98, 95);
  }
  
- void setClicked(boolean c)
+ public void setClicked(boolean c)
  {
   clicked = c; 
  }
  
- boolean getClicked()
+ public boolean getClicked()
  {
   return clicked; 
  }
  
- void setColor(color RGB)
+ public void setColor(color RGB)
  {
   blockColor = RGB; 
  }
  
- void highlight()
+ public void highlight()
  {
    outline = 255;
  }
 
- void unHighlight()
+ public void unHighlight()
  {
   outline = 0; 
  }
  
- void showPossibleMoves()
- {
-   previousBlockColor = blockColor;
-   setColor(color(0, 255, 0));
- } 
- 
- void hidePossibleMoves()
- {
-  setColor(previousBlockColor); 
- }
- 
- int getXcordinate()
+ public int getXcordinate()
  {
   return xCordinate; 
  }
  
- int getYcordinate()
+ public int getYcordinate()
  {
   return yCordinate; 
  }
  
- int getBlock()
+ public int getBlock()
  {
   return name;
  }
  
- boolean getHasPiece()
+ public color getBlockColor()
+ {
+  return blockColor; 
+ }
+ 
+ public color getBackupColor()
+ {
+  return backupColor;
+ }
+ 
+ public boolean getHasPiece()
  {
   return hasPiece; 
  }
  
- void setHasPiece(boolean hasPiece)
+ public String getPieceColor()
+ {
+   return pieceColor;
+ }
+ 
+ public void setHasPiece(boolean hasPiece, String pieceColor)
  {
   this.hasPiece = hasPiece; 
+  this.pieceColor = pieceColor;
+ }
+ 
+ public void setBackupColor(color backupColor)
+ {
+   this.backupColor = backupColor;
  }
 }
