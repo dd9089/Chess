@@ -38,7 +38,10 @@ public class Bishop extends chessPiece
 			return false;
 		}
 		
-		if(goalX - this.getXLocation == goalY - this.getXLocation
+		if(!(Math.abs(goalX - this.getXLocation) == Math.abs(goalY - this.getXLocation)))
+		{
+		
+		}
 
 
 		if(goalX > this.getXLocation() && goalY > this.getYLocation())
