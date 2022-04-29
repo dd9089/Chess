@@ -91,7 +91,7 @@ public class Block
   return hasPiece; 
  }
  
- public String getPieceColor()
+ public String getPColor() //keep the name getPColor
  {
    return c1.getPieceColor();
  }
