@@ -93,7 +93,7 @@ public class Block
  
  public String getPColor() //keep the name getPColor
  {
-   return c1.getPieceColor();
+   return cp.getPieceColor();
  }
  
  public void setHasPiece(boolean hasPiece, String pieceColor)
