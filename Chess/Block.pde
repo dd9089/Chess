@@ -3,9 +3,9 @@ public class Block
  private int xCordinate, yCordinate, name;
  private boolean clicked, hasPiece;
  private color blockColor, outline, backupColor;
- private chessPiece;  //link between classes
+ private chessPiece cp;  //link between classes
  
- Block(int x, int y, int name, chessPiece cp)
+ Block(int x, int y, int name, chessPiece c)
  {
    this.name = name;
    xCordinate = x;
@@ -13,7 +13,7 @@ public class Block
    outline = 0;
    clicked = false;
    hasPiece = false;
-   chessPiece = cp; 
+   cp = c; 
  }
  
  public void update(int x, int y)
@@ -93,7 +93,7 @@ public class Block
  
  public String getPieceColor()
  {
-   return pieceColor;
+   return c1.getPieceColor();
  }
  
  public void setHasPiece(boolean hasPiece, String pieceColor)
