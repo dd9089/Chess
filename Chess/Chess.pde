@@ -191,15 +191,17 @@ void mousePressed()
        // updates the 2d array of pieces and tells the block that it has a piece and its color
        playerPieces[newX][newY] = temp;
        board.bl[newX][newY].setHasPiece(true, playerPieces[newX][newY].getPieceColor());
-  
-       // sets previous clicked to neutral location
-       previousClickedX = 7;
-       previousClickedY = 8;
        
        playerPieces[newX][newY].hasMoved();
        
        drawPlayerPieces();
     }
+    
+    // sets previous clicked to neutral location
+    previousClickedX = 7;
+    previousClickedY = 8;
+    possibleMoves = board.hidePossibleMoves(possibleMoves);
+
   }
   
   void drawPlayerPieces()
