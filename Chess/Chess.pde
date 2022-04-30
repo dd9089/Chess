@@ -25,6 +25,7 @@ void draw()
  drawPieces();
 }
 
+//checks for mouse press
 void mousePressed()
 {
   int x = (int) (mouseX / 100) * 100;
