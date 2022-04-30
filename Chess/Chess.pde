@@ -17,6 +17,7 @@ void setup()
   createPieces();
 }
 
+//main loop of game
 void draw()
 {
  background(color(150,150,150));
