@@ -18,55 +18,96 @@ public class Bishop extends Piece
     return pieceName;
   }
 
-  public void move(int x, int y)
+  public void genPossibleMoves()
   {
-
+    int xCordinate = getXLocation();
+    int yCordinate = getYLocation();
+    
+    //moving diagonally down-right
+    while (yCordinate + 1 <= 7 && xCordinate + 1 <= 7)
+    {
+      if (!board.bl[xCordinate + 1][yCordinate + 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 1]);
+      }
+      else if (!board.bl[xCordinate + 1][yCordinate + 1].getPieceColor().equals(board.bl[getXLocation()][getYLocation()].getPieceColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate += 1;
+       yCordinate += 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    //moving diagonally up-right
+    while (yCordinate - 1 >= 0 && xCordinate + 1 <= 7)
+    {
+      if (!board.bl[xCordinate + 1][yCordinate - 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
+      }
+      else if (!board.bl[xCordinate + 1][yCordinate - 1].getPieceColor().equals(board.bl[getXLocation()][getYLocation()].getPieceColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate += 1;
+       yCordinate -= 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    //moving diagonally up-left
+    while (yCordinate - 1 >= 0 && xCordinate - 1 >= 0)
+    {
+      if (!board.bl[xCordinate - 1][yCordinate - 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
+      }
+      else if (!board.bl[xCordinate - 1][yCordinate - 1].getPieceColor().equals(board.bl[getXLocation()][getYLocation()].getPieceColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate -= 1;
+       yCordinate -= 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    //moving diagonally down-left
+    while (yCordinate + 1 <= 7 && xCordinate - 1 >= 0)
+    {
+      if (!board.bl[xCordinate - 1][yCordinate + 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 1]);
+      }
+      else if (!board.bl[xCordinate - 1][yCordinate + 1].getPieceColor().equals(board.bl[getXLocation()][getYLocation()].getPieceColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate -= 1;
+       yCordinate += 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    board.showPossibleMoves(possibleMoves);
   }
-  
-  //Is valid move method
-  public boolean checkSpotValid(int x, int y)
-  {
-    if(x == this.getXLocation() || y == this.getYLocation())
-    {
-      return false;
-    }
-
-
-    if(x > this.getXLocation() && y > this.getYLocation())
-    {
-      for(int ix = this.getXLocation() + 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y++)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      return false;
-    }
-    else if(x > this.getXLocation() && y < this.getYLocation())
-    {
-      for(int ix = this.getXLocation() + 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y--)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      return false;
-    }
-    else if(x < this.getXLocation() && y > this.getYLocation())
-    {
-      for(int ix = this.getXLocation() - 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y++)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      return false;
-    }
-    else if(x < this.getXLocation() && y < this.getYLocation())
-    {
-      for(int ix = this.getXLocation() - 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y--)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      return false;
-    }
-
-    return false;
-  }//end is valid move
-
-  
+    
 }//end class

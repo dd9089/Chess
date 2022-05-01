@@ -63,14 +63,11 @@ void mousePressed()
           {
             board.bl[z][w].setClicked(true); 
             board.bl[z][w].highlight();
-            playerPieces[z][w].genPossibleMoves(x, y);
+            playerPieces[z][w].genPossibleMoves();
   
                       
             if (board.bl[previousClickedX][previousClickedY].getHasPiece())
-            {
-              System.out.println(previousClickedX + " " + previousClickedY);
               update(previousClickedX, previousClickedY, z, w);
-            }
             
             else
             {

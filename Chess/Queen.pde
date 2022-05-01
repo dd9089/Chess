@@ -21,9 +21,12 @@ public class Queen extends Piece
     return pieceName;
   }
 
-  public void move(int x, int y)
+  public void genPossibleMoves()
   {
-
+    Rook r = new Rook(getPieceColor(), getXLocation(), getYLocation());
+    Bishop b = new Bishop(getPieceColor(), getXLocation(), getYLocation());
+    r.genPossibleMoves();
+    b.genPossibleMoves();
   }
 
 

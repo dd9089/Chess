@@ -21,7 +21,7 @@ public class Pawn extends Piece
     return pieceName;
   }
 
-  public void genPossibleMoves(int x, int y)
+  public void genPossibleMoves()
   {
      int xCordinate = getXLocation();
      int yCordinate = getYLocation();
