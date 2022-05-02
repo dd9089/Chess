@@ -106,4 +106,9 @@ public class Block
  {
    this.backupColor = backupColor;
  }
+ 
+ public void setPiece(chessPiece c)
+ {
+  cp = c;
+ }
 }
