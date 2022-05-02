@@ -1,99 +1,164 @@
 //this class was made by clay on 4/22/2022
 //edited by chase on 4/25/22
-/*
-public class Bishop2 extends Piece
+
+public class Bishop extends chessPiece
 {
-  //variables
-  private String pieceName = "Bishop";
-  //constructor
-  public Bishop2(String pieceColor, int xLocation, int yLocation)
-  {
-    super(pieceColor, xLocation, yLocation, "bishop");
-  }
-  
-  //Methods
-  public String getPieceName()
-  {
-    //Obtain type of piece
-    return pieceName;
-  }
+	//variables
+	private String pieceName = "Bishop";
+	//constructor
+	public Bishop(String color, int xLocation, int yLocation)
+	{
+		super(color, xLocation, yLocation);
+	}
 
-  public void move(int x, int y)
-  {
+	//Methods
+	public String getPieceName()
+	{
+		//Obtain type of piece
+		return pieceName;
+	}
 
-  }
-  
-  //Is valid move method
-  public boolean checkSpotValid(int goalX, int goalY)
-  {
-    //return false if move method attempts to move to the current location
-    if(goalX == this.getXLocation() || goalY == this.getYLocation())
-    {
-      return false;
-    }
-    
-    if(goalX < 0 && goalX > 7 || goalY < 0 || goalY > 7)
-    {
-      //return false if coords not on board 
-      return false;
-    }
-    
-    if(goalX - this.getXLocation() == goalY - this.getXLocation()){}
+	public void move(int goalX, int goalY, Board b1)
+	{
+		if(checkSpotValid(goalX, goalY, b1))
+		{
+			//Set variables in new block
+			b1[goalX][goalY].setHasPiece(true, super.getPieceColor());
+
+			//Set new block piece to this block
+			b1[goalX][goalY].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
+
+			//Set previous block to null
+			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
+
+			//Change current blocks x&y coords to new values
+			super.setXLocation(goalX);
+			super.setYLocation(goalY);
+		}
+
+	}
+
+	//Is valid move method
+	public boolean checkSpotValid(int goalX, int goalY, Board b1)
+	{
+		//Initial tests
+			if(goalX == super.getXLocation() || goalY == super.getYLocation())
+			{
+				//return false if move method attempts to move to the current location
+				return false;
+			}
+
+			if(goalX < 0 && goalX > 7 || goalY < 0 || goalY > 7)
+			{
+				//return false if coords not on board
+				return false;
+			}
+
+			if(!(Math.abs(goalX - super.getXLocation()) == Math.abs(goalY - super.getYLocation())))
+			{
+				//return false if coords are not incremented in a diagonal fashion
+				return false;
+			}
 
 
-    if(goalX > this.getXLocation() && goalY > this.getYLocation())
-    {
-      for(int newX = this.getXLocation() + 1, newY = this.getYLocation() + 1; newX < goalX && newY < goalY; newX++, newY++)
-      {
-        //Check if there is a piece 
-        if(board.bl[newX][newY].getHasPiece())
-        {
-          //if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
-          return false;          
-        }
-      }
-      //Now check if there is a piece, if friendly or enemy
-      if(board.bl[newX][newY].getHasPiece())
-      {
-        if(board.bl[goalX][goalY].hasFriendlyPiece())  //This isnt a method yet so we will have to make something that can essentially do this
-          return false;
-        else
-          return true;
-      }
-      else
-        return true;  //return true if there is no piece in the spot we are trying to move to
-      
-    }
-    else if(x > this.getXLocation() && y < this.getYLocation())
-    {
-      for(int ix = this.getXLocation() + 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x++, y--)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      
-    }
-    else if(x < this.getXLocation() && y > this.getYLocation())
-    {
-      for(int ix = this.getXLocation() - 1, iy = this.getYLocation() + 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y++)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      
-    }
-    else if(x < this.getXLocation() && y < this.getYLocation())
-    {
-      for(int ix = this.getXLocation() - 1, iy = this.getYLocation() - 1; ix > -1 && ix < 8 && iy > -1 && iy < 8; x--, y--)
-      {
-        //here the spot at x, y needs to check if there is a piece
-      }
-      
-    }
-    
-    //return false if coord was not a valid location to move
-    return false;
-  }//end is valid move
+		//Loop through different directions
+		//Up right
+		if(goalX > super.getXLocation() && goalY > super.getYLocation())
+		{
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX < goalX && newY < goalY; newX++, newY++)
+			{
+				//Check if there is a piece
+				if(b1[newX][newY].getHasPiece())
+				{
+					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
+					return false;
+				}
+			}
+			//Now check if there is a piece, if friendly or enemy
+			if(b1[goalX][goalY].getHasPiece())
+			{
+				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+					return false;
+				else
+					return true;
+			}
+			else
+				return true;	//return true if there is no piece in the spot we are trying to move to
 
-  
+		}
+		//Down right
+		else if(goalX > super.getXLocation() && goalY < super.getYLocation())
+		{
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX++, newY--)
+			{
+				//Check if there is a piece
+				if(b1[newX][newY].getHasPiece())
+				{
+					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
+					return false;
+				}
+			}
+			//Now check if there is a piece, if friendly or enemy
+			if(b1[goalX][goalY].getHasPiece())
+			{
+				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+					return false;
+				else
+					return true;
+			}
+			else
+				return true;	//return true if there is no piece in the spot we are trying to move to
+
+		}
+		else if(goalX < super.getXLocation() && goalY > super.getYLocation())
+		{
+			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() + 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX--, newY++)
+			{
+				//Check if there is a piece
+				if(b1[newX][newY].getHasPiece())
+				{
+					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
+					return false;
+				}
+			}
+			//Now check if there is a piece, if friendly or enemy
+			if(b1[goalX][goalY].getHasPiece())
+			{
+				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+					return false;
+				else
+					return true;
+			}
+			else
+				return true;	//return true if there is no piece in the spot we are trying to move to
+
+		}
+		else if(goalX < super.getXLocation() && goalY < super.getYLocation())
+		{
+			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() - 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX--, newY--)
+			{
+				//Check if there is a piece
+				if(b1[newX][newY].getHasPiece())
+				{
+					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
+					return false;
+				}
+			}
+			//Now check if there is a piece, if friendly or enemy
+			if(b1[goalX][goalY].getHasPiece())
+			{
+				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+					return false;
+				else
+					return true;
+			}
+			else
+				return true;	//return true if there is no piece in the spot we are trying to move to
+		}
+
+		//return false if coord was not a valid location to move
+		return false;
+	}//end is valid move
+
+
 }//end class
-
-*/
