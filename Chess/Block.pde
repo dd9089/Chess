@@ -96,6 +96,11 @@ public class Block
    return cp.getPieceColor();
  }
  
+ public chessPiece getPiece()
+ {
+  return cp;
+ }
+ 
  public void setHasPiece(boolean hasPiece, String pieceColor)
  {
   this.hasPiece = hasPiece; 
