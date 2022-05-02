@@ -49,7 +49,6 @@ void mousePressed()
     y = 679;
       
   board.bl[previousClickedX][previousClickedY].setClicked(false);
-  possibleMoves = board.hidePossibleMoves(possibleMoves);
 
   if (x >= 300 && x <= 1100)
   {
@@ -59,15 +58,45 @@ void mousePressed()
       {
         if (board.bl[z][w].isBlock(x, y))
         {
-          if (board.bl[z][w].getHasPiece())
+          if (board.bl[previousClickedX][previousClickedY].getHasPiece())
+          {
+              for (int foo = 0; foo < 8; foo++)
+              {
+               for (int bar = 0; bar < 8; bar++)
+               {
+                if (possibleMoves.contains(board.bl[z][w]))
+                {
+                  update(previousClickedX, previousClickedY, z, w);
+                  break;
+                }          
+              }
+            }
+            previousClickedX = 7;
+            previousClickedY = 8;
+          }
+          
+          else if (board.bl[z][w].getHasPiece())
           {
             board.bl[z][w].setClicked(true); 
             board.bl[z][w].highlight();
+            possibleMoves = board.hidePossibleMoves(possibleMoves);
             playerPieces[z][w].genPossibleMoves();
   
                       
-            if (board.bl[previousClickedX][previousClickedY].getHasPiece())
-              update(previousClickedX, previousClickedY, z, w);
+            if (board.bl[previousClickedX][previousClickedY].getHasPiece() && !board.bl[previousClickedX][previousClickedY].getPieceColor().equals(board.bl[z][w].getPieceColor()))
+            {
+              for (int foo = 0; foo < 8; foo++)
+              {
+               for (int bar = 0; bar < 8; bar++)
+               {
+                if (possibleMoves.contains(board.bl[z][w]))
+                {
+                  update(previousClickedX, previousClickedY, z, w);
+                  break;
+                }
+               }
+              }
+            }
             
             else
             {
@@ -75,17 +104,14 @@ void mousePressed()
               previousClickedY = w; 
             }
           }
-          
-          else if (board.bl[previousClickedX][previousClickedY].getHasPiece())
-            update(previousClickedX, previousClickedY, z, w);
-          
+             
           else
           {
-            //println("Block: " + board.bl[z][w].getBlock() + " was clicked");
             board.bl[z][w].setClicked(true); 
             board.bl[z][w].highlight();
             previousClickedX = z;
             previousClickedY = w;
+            possibleMoves = board.hidePossibleMoves(possibleMoves);
           }
         }
       }
@@ -95,6 +121,7 @@ void mousePressed()
   {
     previousClickedX = 7;
     previousClickedY = 8;
+    possibleMoves = board.hidePossibleMoves(possibleMoves);
   }
 }
 
@@ -172,6 +199,7 @@ void mousePressed()
   // moves the piece clicked to were you have clicked
   void update(int x, int y, int newX, int newY)
   {
+    System.out.println(possibleMoves);
     if (!(newX == x) || !(newY == y))
     {
        Piece temp = playerPieces[x][y];

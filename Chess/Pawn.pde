@@ -44,7 +44,7 @@ public class Pawn extends Piece
         possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
         
       // if there is a black piece diagonally left of the pawn
-      if ((xCordinate - 1 >= 0 && board.bl[xCordinate - 1][yCordinate - 1].getHasPiece()))
+      if ((xCordinate - 1 >= 0 && board.bl[xCordinate - 1][yCordinate - 1].getHasPiece()) && board.bl[xCordinate - 1][yCordinate - 1].getPieceColor().equals("black"))
         possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
     }
     

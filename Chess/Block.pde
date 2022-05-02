@@ -106,4 +106,9 @@ public class Block
  {
    this.backupColor = backupColor;
  }
+ 
+ public String toString()
+ {
+   return Integer.toString(name);
+ }
 }
