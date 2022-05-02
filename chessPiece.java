@@ -26,7 +26,7 @@ public class chessPiece{
 			return "regular piece";
 		}
 
-		public String getPeiceColor()
+		public String getPieceColor()
 		{
 			//Return color of peice
 			return pieceColor;
