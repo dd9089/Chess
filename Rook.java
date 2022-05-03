@@ -81,7 +81,7 @@ public class Rook extends chessPiece
 		int xGoal = x;
 		int xGoal = y;
 		boolean validMove = true;
-		int goodMoveF = yValue + 1;
+		int goodMoveF = -1;
 
 		//portion to make sure the goals are actually on the board.
 		boolean good = true;
@@ -101,7 +101,7 @@ public class Rook extends chessPiece
 		int xGoal = x;
 		int xGoal = y;
 		boolean validMove = true;
-		int goodMoveB = yValue;
+		int goodMoveB = -1;
 
 
 		//portion to make sure the goals are actually on the board.
@@ -123,7 +123,7 @@ public class Rook extends chessPiece
 		int xGoal = x;
 		int xGoal = y;
 		boolean validMove = true;
-		int goodMoveR = xValue;
+		int goodMoveR = -1;
 
 
 		//portion to make sure the goals are actually on the board.
@@ -145,7 +145,7 @@ public class Rook extends chessPiece
 		int xGoal = x;
 		int xGoal = y;
 		boolean validMove = true;
-		int goodMoveL = xValue;
+		int goodMoveL = -1;
 
 
 		//portion to make sure the goals are actually on the board.
