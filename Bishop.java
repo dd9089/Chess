@@ -30,6 +30,7 @@ public class Bishop extends chessPiece
 
 			//Set previous block to null
 			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
+			b1[super.getXLocation()][super.getYLocation()].setHasPiece(false, null);
 
 			//Change current blocks x&y coords to new values
 			super.setXLocation(goalX);
