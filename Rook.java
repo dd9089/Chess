@@ -33,10 +33,10 @@ public class Rook extends chessPiece
 
 	public void move(int x, int y, Board b1)
 	{
-		int f = potentialForward(x ,y);
-		int b = potentialBackward(x, y);
-		int r = potentialRight(x, y);
-		int l = potentialLeft(x, y);
+		int f = potentialForward(x ,y, b1);
+		int b = potentialBackward(x, y, b1);
+		int r = potentialRight(x, y, b1);
+		int l = potentialLeft(x, y, b1);
 		
 		if(x == r || x == l) {
 			//Set variables in new block
@@ -74,7 +74,7 @@ public class Rook extends chessPiece
 	}
 	//the int intx and y are the goal values to be input
 	//method to obtain location that the rook can't move to forward
-	public int potentialForward (int x, int y) {
+	public int potentialForward (int x, int y, Board b1) {
 		
 		int xValue = getXLocation();				//getXLocation();         //should theorectically have a 0-7 for now, can change later to fit needs
 		int yValue = getYLOcation();				//getYLocation();
@@ -95,7 +95,7 @@ public class Rook extends chessPiece
 		return goodMoveF;
 	}
 	//method to obtain location that the rook can't move to back
-	public int potentialBackward(int x, int y) {
+	public int potentialBackward(int x, int y, Board b1) {
 		int xValue = getXLocation();				//getXLocation();         //should theorectically have a 0-7 for now, can change later to fit needs
 		int yValue = getYLOcation();				//getYLocation();
 		int xGoal = x;
@@ -117,7 +117,7 @@ public class Rook extends chessPiece
 		return goodMoveB;
 	}
 	//method to obtain location that the rook can't move to right
-	public int potentialRight (int x, int y) {
+	public int potentialRight (int x, int y, Board b1) {
 		int xValue = getXLocation();				//getXLocation();         //should theorectically have a 0-7 for now, can change later to fit needs
 		int yValue = getYLOcation();				//getYLocation();
 		int xGoal = x;
@@ -139,7 +139,7 @@ public class Rook extends chessPiece
 		return goodMoveR
 	}
 	//method to obtin location that the rook can't move to left
-	public int potentiaLeft(int x, int y) {
+	public int potentiaLeft(int x, int y, Board b1) {
 		int xValue = getXLocation();				//getXLocation();         //should theorectically have a 0-7 for now, can change later to fit needs
 		int yValue = getYLOcation();				//getYLocation();
 		int xGoal = x;
