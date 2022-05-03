@@ -25,6 +25,14 @@ public class Queen extends Piece
   {
 
   }
+  
+   public void genPossibleMoves()
+  {
+    Rook r = new Rook(getPieceColor(), getXLocation(), getYLocation());
+    Bishop b = new Bishop(getPieceColor(), getXLocation(), getYLocation());
+    r.genPossibleMoves();
+    b.genPossibleMoves();
+  }
 
 
 }//end of class

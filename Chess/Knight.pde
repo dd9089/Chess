@@ -25,6 +25,11 @@ public class Knight extends Piece
   {
 
   }
+  
+  public void genPossibleMoves()
+  {
+    
+  }
 
 
 }//end of class
