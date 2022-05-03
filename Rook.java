@@ -31,22 +31,48 @@ public class Rook extends chessPiece
 		return pieceName;
 	}
 
-	public void move(int x, int y)
+	public void move(int x, int y, Board b1)
 	{
 		int f = potentialForward(x ,y);
 		int b = potentialBackward(x, y);
 		int r = potentialRight(x, y);
 		int l = potentialLeft(x, y);
 		
-		if(x == r || x == l)
-			System.out.println("The move is valid");
-		else if (y == f || y == b)
-			System.out.println("The move is valid");
+		if(x == r || x == l) {
+			//Set variables in new block
+			b1[x][y].setHasPiece(true, super.getPieceColor());
+
+			//Set new block piece to this block
+			b1[x][y].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
+
+			//Set previous block to null
+			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
+			b1[super.getXLocation()][super.getYLocation()].setHasPiece(false, null);
+
+			//Change current blocks x&y coords to new values
+			super.setXLocation(x);
+			super.setYLocation(y);
+		}
+		else if (y == f || y == b) {
+			//Set variables in new block
+			b1[x][y].setHasPiece(true, super.getPieceColor());
+
+			//Set new block piece to this block
+			b1[x][y].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
+
+			//Set previous block to null
+			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
+			b1[super.getXLocation()][super.getYLocation()].setHasPiece(false, null);
+
+			//Change current blocks x&y coords to new values
+			super.setXLocation(x);
+			super.setYLocation(y);
+		}
 		else
 			System.out.println("The move is not valid");
 
 	}
-	//th int intx and y are the goal values to be input
+	//the int intx and y are the goal values to be input
 	//method to obtain location that the rook can't move to forward
 	public int potentialForward (int x, int y) {
 		
