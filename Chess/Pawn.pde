@@ -22,25 +22,25 @@ public class Pawn extends Piece
   }
   
   public void move(int goalX, int goalY, Board b1)
+  {
+	if(possibleMoves.contains(b1[goalX][goalY]))
 	{
-		if(possibleMoves.contains(b1[goalX][goalY]))
-		{
-			//Set variables in new block
-			b1[goalX][goalY].setHasPiece(true, super.getPieceColor());
+		//Set variables in new block
+		b1[goalX][goalY].setHasPiece(true, super.getPieceColor());
 
-			//Set new block piece to this block
-			b1[goalX][goalY].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
+		//Set new block piece to this block
+		b1[goalX][goalY].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
 
-			//Set previous block to null
-			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
-			b1[super.getXLocation()][super.getYLocation()].setHasPiece(false, null);
+		//Set previous block to null
+		b1[super.getXLocation()][super.getYLocation()].setPiece(null);
+		b1[super.getXLocation()][super.getYLocation()].setHasPiece(false, null);
 
-			//Change current blocks x&y coords to new values
-			super.setXLocation(goalX);
-			super.setYLocation(goalY);
-		}
-
+		//Change current blocks x&y coords to new values
+		super.setXLocation(goalX);
+		super.setYLocation(goalY);
 	}
+
+  }
 
   public void genPossibleMoves(int x, int y)
   {
