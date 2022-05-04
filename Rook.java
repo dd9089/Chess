@@ -32,7 +32,7 @@ public class Rook extends chessPiece
 	}
 
 	public void move(int x, int y, Board b1)
-	{
+	{								//if x or y value is negative, the move is not valid
 		int f = potentialForward(x ,y, b1);
 		int b = potentialBackward(x, y, b1);
 		int r = potentialRight(x, y, b1);
@@ -89,7 +89,19 @@ public class Rook extends chessPiece
 			good = false;
 			for (int f = yValue; f <= yGoal; f++) {
 				if (!(b1[xValue][f].getHasPiece()))
-				goodMoveF = f;
+					goodMoveF = f;
+
+				
+				//Now check if there is a piece, if friendly or enemy
+				if(b1[xValue][f].getHasPiece()) {
+				
+					if(b1[xValue][b].getPColor().equalsIgnoreCase(super.getPieceColor()))
+						return -1;    //returns 1 if friendly
+					else
+						return f;    //returns spot where enemy is 
+				}
+				
+
 			}//end of for
 		}
 		return goodMoveF;
@@ -110,8 +122,19 @@ public class Rook extends chessPiece
 			good = false;
 			
 			for (int b = yValue; b >= yGoal ; b--) {
-			if (b1{[xValue][b].getHasPiece())
+				if (!(b1[xValue][b].getHasPiece()))
 					goodMoveB = b;
+
+				//Now check if there is a piece, if friendly or enemy
+				if(b1[xValue][b].getHasPiece()) {
+				
+					if(b1[xValue][b].getPColor().equalsIgnoreCase(super.getPieceColor()))
+						return -1; // returns -1 if friendly
+					else
+						return b;  // returns spot where enemy is
+				}
+				
+
 			}//end of for
 		}//end of if
 		return goodMoveB;
@@ -132,8 +155,19 @@ public class Rook extends chessPiece
 			good = false;
 	
 			for (int r = xValue; r <= xGoal; r++){
-				if (b1[r][yValue].getHasPiece())
+				if (!(b1[r][yValue].getHasPiece()))
 					goodMoveR = r;
+					
+							
+				//Now check if there is a piece, if friendly or enemy
+				if(b1[r][yValue].getHasPiece()) {
+
+					if(b1[r][yValue].getPColor().equalsIgnoreCase(super.getPieceColor()))
+						return -1;  //returns -1 if friendly
+					else
+						return r;  //retrns spot enemy is
+				}
+			
 			}//end of for
 		}//end of if
 		return goodMoveR
@@ -154,8 +188,19 @@ public class Rook extends chessPiece
 			good = false;
 		
 			for (int l = xValue; l >= xGoal; l--) {
-				if (b1[r][yValue].getHasPiece())
+				if (!(b1[l][yValue].getHasPiece()))
 					goodMoveL = l;
+					
+				
+				//Now check if there is a piece, if friendly or enemy
+				if(b1[r][yValue].getHasPiece()) {
+				
+					if(b1[l][yValue].getPColor().equalsIgnoreCase(super.getPieceColor()))
+						return -1;     //returns -1 if friendly
+					else
+						return l;      //retunrs spot enemy is
+				}
+				
 			}//end of for
 		}//end of if
 		return goodMoveL;
