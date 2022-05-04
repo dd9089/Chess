@@ -1,7 +1,7 @@
 //Knight chess piece subclass
 //Made by Chase on 4/25
 
-public class Knight extends chessPiece
+public class Knight extends Piece
 {
 	//Variables
 	private String pieceName = "Knight";
