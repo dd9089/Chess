@@ -3,7 +3,7 @@ public class Block
  private int xCordinate, yCordinate, name;
  private boolean clicked, hasPiece;
  private color blockColor, outline, backupColor;
- private chessPiece cp;  //link between classes
+ private Piece cp;  //link between classes
  
  Block(int x, int y, int name, chessPiece c)
  {
