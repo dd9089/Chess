@@ -1,7 +1,7 @@
 //this class was made by clay on 4/22/2022
 //edited by chase on 4/25/22
 
-public class Bishop extends chessPiece
+public class Bishop extends Piece
 {
 	//variables
 	private String pieceName = "Bishop";
