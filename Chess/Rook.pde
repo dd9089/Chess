@@ -2,7 +2,7 @@
 //This is the rook subclass
 
 
-public class Rook extends chessPiece
+public class Rook extends Piece
 {
 	public static void main (String[] args)
 	{
