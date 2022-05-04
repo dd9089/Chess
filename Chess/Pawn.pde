@@ -23,6 +23,7 @@ public class Pawn extends Piece
   
   public void move(int goalX, int goalY, Board b1)
   {
+  	genPossibleMoves(goalX, goalY);
 	if(possibleMoves.contains(b1[goalX][goalY]))
 	{
 		//Set variables in new block
