@@ -22,9 +22,85 @@ public class Rook extends Piece
     return pieceName;
   }
 
-  public void move(int x, int y)
+  public void genPossibleMoves()
   {
-
+    int xCordinate = getXLocation();
+    int yCordinate = getYLocation();
+    
+    
+     //moving up
+     while ( yCordinate - 1 >= 0)
+     {
+       if (!board.bl[xCordinate][yCordinate - 1].getHasPiece())
+         possibleMoves.add(board.bl[xCordinate][yCordinate - 1]);
+       else if (!board.bl[xCordinate][yCordinate - 1].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+       {
+        possibleMoves.add(board.bl[xCordinate][yCordinate - 1]);
+        break;
+       }
+       else
+         break;
+       
+       yCordinate -= 1;
+     }
+     
+     yCordinate = getYLocation();
+     
+     //moving down
+     while ( yCordinate + 1 <= 7)
+     {
+       if (!board.bl[xCordinate][yCordinate + 1].getHasPiece())
+         possibleMoves.add(board.bl[xCordinate][yCordinate + 1]);
+       else if (!board.bl[xCordinate][yCordinate + 1].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+       {
+        possibleMoves.add(board.bl[xCordinate][yCordinate + 1]);
+        break;
+       }
+       else
+         break;
+       
+       yCordinate += 1;
+     }
+     
+     yCordinate = getYLocation();
+     
+     //moving right
+     while ( xCordinate - 1 >= 0)
+     {
+       if (!board.bl[xCordinate - 1][yCordinate].getHasPiece())
+         possibleMoves.add(board.bl[xCordinate - 1][yCordinate]);
+       else if (!board.bl[xCordinate - 1][yCordinate].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+       {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate]);
+        break;
+       }
+       else
+         break;
+       
+       xCordinate -= 1;
+     }
+     
+     xCordinate = getXLocation();
+     
+     //moving left
+     while ( xCordinate + 1 <= 7)
+     {
+       if (!board.bl[xCordinate + 1][yCordinate].getHasPiece())
+         possibleMoves.add(board.bl[xCordinate + 1][yCordinate]);
+       else if (!board.bl[xCordinate + 1][yCordinate].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+       {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate]);
+        break;
+       }
+       else
+         break;
+       
+       xCordinate += 1;
+     }
+     
+     xCordinate = getXLocation();
+     
+    board.showPossibleMoves(possibleMoves);
   }
 
 }//end class

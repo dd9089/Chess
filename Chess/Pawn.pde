@@ -70,4 +70,9 @@ public class Pawn extends Piece
     }  
     board.showPossibleMoves(possibleMoves);
   }
+  
+  Boolean checkSpotValid(int x, int y)
+  {
+   return true; 
+  }
 }//end of class

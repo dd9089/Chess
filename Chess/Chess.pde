@@ -180,8 +180,7 @@ void mousePressed()
   // moves the piece clicked to were you have clicked
   void update(int x, int y, int newX, int newY)
   {
-    System.out.println(possibleMoves);
-    if (!(newX == x) || !(newY == y))
+    if ((!(newX == x) || !(newY == y)) && playerPieces[x][y].checkSpotValid(newX, newY))
     {
        Piece temp = playerPieces[x][y];
        

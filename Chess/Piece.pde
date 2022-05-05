@@ -79,6 +79,11 @@ class Piece{
       System.out.println("K");
     }
     
+    public boolean checkSpotValid(int goalX, int goalY)
+    {
+     return false; 
+    }
+    
     public void update(int x, int y)
     {
      xLocation = x;

@@ -20,11 +20,6 @@ public class Queen extends Piece
     //Obtain type of piece
     return pieceName;
   }
-
-  public void move(int x, int y)
-  {
-
-  }
   
    public void genPossibleMoves()
   {
