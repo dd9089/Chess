@@ -21,7 +21,7 @@ public class Pawn extends Piece
     return pieceName;
   }
 
-  public void genPossibleMoves()
+  public void genPossibleMoves(int x, int y)
   {
      int xCordinate = getXLocation();
      int yCordinate = getYLocation();
@@ -44,7 +44,7 @@ public class Pawn extends Piece
         possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
         
       // if there is a black piece diagonally left of the pawn
-      if ((xCordinate - 1 >= 0 && board.bl[xCordinate - 1][yCordinate - 1].getHasPiece()) && board.bl[xCordinate - 1][yCordinate - 1].getPColor().equals("black"))
+      if ((xCordinate - 1 >= 0 && board.bl[xCordinate - 1][yCordinate - 1].getHasPiece()))
         possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
     }
     
@@ -69,18 +69,5 @@ public class Pawn extends Piece
         possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 1]);
     }  
     board.showPossibleMoves(possibleMoves);
-  }
-  
-  boolean checkSpotValid(int x, int y)
-  {
-   for (Block foo: possibleMoves)
-   {
-    if (foo.getBlock() == ((x + 1) * (y + 1) - 1))
-    {
-      System.out.println((x + 1) * (y + 1) - 1);
-      return true;
-    }
-   }
-   return false;
   }
 }//end of class

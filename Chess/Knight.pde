@@ -3,78 +3,104 @@
 
 public class Knight extends Piece
 {
-	//Variables
-	private String pieceName = "Knight";
+  //Variables
+  private String pieceName = "Knight";
 
 
-	//Constructor
-	public Knight(String c, int x, int y)
-	{
-		super(c, x, y);
-	}
+  //Constructor
+  public Knight(String c, int x, int y)
+  {
+    super(c, x, y, "knight");
+  }
 
 
-	//Methods
-	public String getPieceName()
-	{
-		//Obtain type of piece
-		return pieceName;
-	}
+  //Methods
+  public String getPieceName()
+  {
+    //Obtain type of piece
+    return pieceName;
+  }
 
-	public void move(int x, int y, Board b1)
-	{
-		if(checkSpotValid(goalX, goalY, b1))
-		{
-			//Set variables in new block
-			b1[goalX][goalY].setHasPiece(true, super.getPieceColor());
-
-			//Set new block piece to this block
-			b1[goalX][goalY].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
-
-			//Set previous block to null
-			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
-			b1[super.getXLocation()][super.getYLocation()].setHasPiece(false, null);
-
-			//Change current blocks x&y coords to new values
-			super.setXLocation(goalX);
-			super.setYLocation(goalY);
-		}
-	}
-	
-	//Is valid move method
-	public boolean checkSpotValid(int goalX, int goalY, Board b1)
-	{
-		//Initial tests
-		if(goalX == super.getXLocation() && goalY == super.getYLocation())
-		{
-			//return false if move method attempts to move to the current location
-			return false;
-		}
-
-		if(goalX < 0 && goalX > 7 || goalY < 0 || goalY > 7)
-		{
-			//return false if coords not on board
-			return false;
-		}
-
-		//check if there is a piece, if friendly or enemy
-		//note that there is no code checking if there is a piece inbetween the piece and the locaton because the knight can jump over pieces
-		if(b1[goalX][goalY].getHasPiece())
-		{
-			if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
-				return false;
-			else
-				return true;
-		}
-		else
-		{
-			return true;	//return true if there is no piece in the spot we are trying to move to
-		}
-
-
-		//return false if coord was not a valid location to move
-		return false;
-	}//end is valid move
+   //shows possible moves
+  public void genPossibleMoves()
+  {
+    int xCordinate = getXLocation();
+    int yCordinate = getYLocation();
+    
+    //moving down right 1
+    if (xCordinate + 2 <= 7 && yCordinate + 1 <= 7)
+    {
+     if (!board.bl[xCordinate + 2][yCordinate + 1].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate + 2][yCordinate + 1]);
+     else if (!board.bl[xCordinate + 2][yCordinate + 1].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate + 2][yCordinate + 1]);
+    }
+    
+    //moving down right 2
+    if (xCordinate + 1 <= 7 && yCordinate + 2 <= 7)
+    {
+     if (!board.bl[xCordinate + 1][yCordinate + 2].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 2]);
+     else if (!board.bl[xCordinate + 1][yCordinate + 2].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 2]);
+    }
+    
+    //moving down left 1
+    if (xCordinate - 2 >= 0 && yCordinate + 1 <= 7)
+    {
+     if (!board.bl[xCordinate - 2][yCordinate + 1].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate - 2][yCordinate + 1]);
+     else if (!board.bl[xCordinate - 2][yCordinate + 1].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate - 2][yCordinate + 1]);
+    }
+    
+    //moving down left 2
+    if (xCordinate - 1 >= 0 && yCordinate + 2 <= 7)
+    {
+     if (!board.bl[xCordinate - 1][yCordinate + 2].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 2]);
+     else if (!board.bl[xCordinate - 1][yCordinate + 2].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 2]);
+    }
+    
+     //moving up left 1
+    if (xCordinate - 2 >= 0 && yCordinate - 1 >= 0)
+    {
+     if (!board.bl[xCordinate - 2][yCordinate - 1].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate - 2][yCordinate - 1]);
+     else if (!board.bl[xCordinate - 2][yCordinate - 1].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate - 2][yCordinate - 1]);
+    }
+    
+    //moving up left 2
+    if (xCordinate - 1 >= 0 && yCordinate - 2 >= 0)
+    {
+     if (!board.bl[xCordinate - 1][yCordinate - 2].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 2]);
+     else if (!board.bl[xCordinate - 1][yCordinate - 2].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 2]);
+    }
+    
+    //moving up right 1
+    if (xCordinate + 2 <= 7 && yCordinate - 1 >= 0)
+    {
+     if (!board.bl[xCordinate + 2][yCordinate - 1].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate + 2][yCordinate - 1]);
+     else if (!board.bl[xCordinate + 2][yCordinate - 1].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate + 2][yCordinate - 1]);
+    }
+    
+    //moving up right 2
+    if (xCordinate + 1 <= 7 && yCordinate - 2 >= 0)
+    {
+     if (!board.bl[xCordinate + 1][yCordinate - 2].getHasPiece())
+       possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 2]);
+     else if (!board.bl[xCordinate + 1][yCordinate - 2].getPColor().equals(board.bl[xCordinate][yCordinate].getPColor()))
+      possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 2]);
+    }
+    
+    board.showPossibleMoves(possibleMoves);
+  }
 
 
 }//end of class

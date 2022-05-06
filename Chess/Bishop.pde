@@ -6,9 +6,9 @@ public class Bishop extends Piece
 	//variables
 	private String pieceName = "Bishop";
 	//constructor
-	public Bishop(String color, int xLocation, int yLocation)
+	public Bishop(String pieceColor, int xLocation, int yLocation)
 	{
-		super(color, xLocation, yLocation);
+		super(pieceColor, xLocation, yLocation, "bishop");
 	}
 
 	//Methods
@@ -18,28 +18,28 @@ public class Bishop extends Piece
 		return pieceName;
 	}
 
-	public void move(int goalX, int goalY, Board b1)
-	{
-		if(checkSpotValid(goalX, goalY, b1))
-		{
-			//Set variables in new block
-			b1[goalX][goalY].setHasPiece(true, super.getPieceColor());
+	//public void move(int goalX, int goalY)
+	//{
+	//	if(checkSpotValid(goalX, goalY))
+	//	{
+	//		//Set variables in new block
+	//		board.bl[goalX][goalY].setHasPiece(true, super.getPieceColor());
 
-			//Set new block piece to this block
-			b1[goalX][goalY].setPiece(b1[super.getXLocation()][super.getYLocation()].getPiece());
+	//		//Set new block piece to this block
+	//		board.bl[goalX][goalY].setPiece(board.bl[super.getXLocation()][super.getYLocation()].getPiece());
 
-			//Set previous block to null
-			b1[super.getXLocation()][super.getYLocation()].setPiece(null);
+	//		//Set previous block to null
+	//		board.bl[super.getXLocation()][super.getYLocation()].setPiece(null);
 
-			//Change current blocks x&y coords to new values
-			super.setXLocation(goalX);
-			super.setYLocation(goalY);
-		}
+	//		//Change current blocks x&y coords to new values
+	//		super.setXLocation(goalX);
+	//		super.setYLocation(goalY);
+	//	}
 
-	}
+	//}
 
 	//Is valid move method
-	public boolean checkSpotValid(int goalX, int goalY, Board b1)
+	public boolean checkSpotValid(int goalX, int goalY)
 	{
 		//Initial tests
 			if(goalX == super.getXLocation() || goalY == super.getYLocation())
@@ -63,21 +63,21 @@ public class Bishop extends Piece
 
 		//Loop through different directions
 		//Up right
-		if(goalX > super.getXLocation() && goalY > super.getYLocation())
+		if(goalX > super.getXLocation() && goalY < super.getYLocation())
 		{
-			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX < goalX && newY < goalY; newX++, newY++)
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX < goalX && newY < goalY; newX++, newY++)
 			{
 				//Check if there is a piece
-				if(b1[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece())
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
 			//Now check if there is a piece, if friendly or enemy
-			if(b1[goalX][goalY].getHasPiece())
+			if(board.bl[goalX][goalY].getHasPiece())
 			{
-				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 					return false;
 				else
 					return true;
@@ -87,21 +87,21 @@ public class Bishop extends Piece
 
 		}
 		//Down right
-		else if(goalX > super.getXLocation() && goalY < super.getYLocation())
+		else if(goalX > super.getXLocation() && goalY > super.getYLocation())
 		{
-			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX++, newY--)
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX++, newY--)
 			{
 				//Check if there is a piece
-				if(b1[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece())
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
 			//Now check if there is a piece, if friendly or enemy
-			if(b1[goalX][goalY].getHasPiece())
+			if(board.bl[goalX][goalY].getHasPiece())
 			{
-				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 					return false;
 				else
 					return true;
@@ -115,16 +115,16 @@ public class Bishop extends Piece
 			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() + 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX--, newY++)
 			{
 				//Check if there is a piece
-				if(b1[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece())
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
 			//Now check if there is a piece, if friendly or enemy
-			if(b1[goalX][goalY].getHasPiece())
+			if(board.bl[goalX][goalY].getHasPiece())
 			{
-				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 					return false;
 				else
 					return true;
@@ -138,16 +138,16 @@ public class Bishop extends Piece
 			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() - 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX--, newY--)
 			{
 				//Check if there is a piece
-				if(b1[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece())
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
 			//Now check if there is a piece, if friendly or enemy
-			if(b1[goalX][goalY].getHasPiece())
+			if(board.bl[goalX][goalY].getHasPiece())
 			{
-				if(b1[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 					return false;
 				else
 					return true;
@@ -159,6 +159,98 @@ public class Bishop extends Piece
 		//return false if coord was not a valid location to move
 		return false;
 	}//end is valid move
+
+  public void genPossibleMoves()
+  {
+    int xCordinate = getXLocation();
+    int yCordinate = getYLocation();
+    
+    //moving diagonally down-right
+    while (yCordinate + 1 <= 7 && xCordinate + 1 <= 7)
+    {
+      if (!board.bl[xCordinate + 1][yCordinate + 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 1]);
+      }
+      else if (!board.bl[xCordinate + 1][yCordinate + 1].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate += 1;
+       yCordinate += 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    //moving diagonally up-right
+    while (yCordinate - 1 >= 0 && xCordinate + 1 <= 7)
+    {
+      if (!board.bl[xCordinate + 1][yCordinate - 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
+      }
+      else if (!board.bl[xCordinate + 1][yCordinate - 1].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate += 1;
+       yCordinate -= 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    //moving diagonally up-left
+    while (yCordinate - 1 >= 0 && xCordinate - 1 >= 0)
+    {
+      if (!board.bl[xCordinate - 1][yCordinate - 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
+      }
+      else if (!board.bl[xCordinate - 1][yCordinate - 1].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate -= 1;
+       yCordinate -= 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    //moving diagonally down-left
+    while (yCordinate + 1 <= 7 && xCordinate - 1 >= 0)
+    {
+      if (!board.bl[xCordinate - 1][yCordinate + 1].getHasPiece())
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 1]);
+      }
+      else if (!board.bl[xCordinate - 1][yCordinate + 1].getPColor().equals(board.bl[getXLocation()][getYLocation()].getPColor()))
+      {
+        possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 1]);
+        break;
+      }
+      else
+        break;
+       xCordinate -= 1;
+       yCordinate += 1;
+    }
+    
+    xCordinate = getXLocation();
+    yCordinate = getYLocation();
+    
+    board.showPossibleMoves(possibleMoves);
+  }
 
 
 }//end class

@@ -74,9 +74,15 @@ class Piece{
       yLocation = y;
     }
     
-    public void genPossibleMoves(int x, int y)
+    public void genPossibleMoves()
     {
       System.out.println("K");
+    }
+    
+    public boolean checkSpotValid(int goalX, int goalY)
+    {
+      System.out.println("H");
+     return false; 
     }
     
     public void update(int x, int y)
