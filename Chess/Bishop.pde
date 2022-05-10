@@ -18,26 +18,6 @@ public class Bishop extends Piece
 		return pieceName;
 	}
 
-	//public void move(int goalX, int goalY)
-	//{
-	//	if(checkSpotValid(goalX, goalY))
-	//	{
-	//		//Set variables in new block
-	//		board.bl[goalX][goalY].setHasPiece(true, super.getPieceColor());
-
-	//		//Set new block piece to this block
-	//		board.bl[goalX][goalY].setPiece(board.bl[super.getXLocation()][super.getYLocation()].getPiece());
-
-	//		//Set previous block to null
-	//		board.bl[super.getXLocation()][super.getYLocation()].setPiece(null);
-
-	//		//Change current blocks x&y coords to new values
-	//		super.setXLocation(goalX);
-	//		super.setYLocation(goalY);
-	//	}
-
-	//}
-
 	//Is valid move method
 	public boolean checkSpotValid(int goalX, int goalY)
 	{
@@ -65,95 +45,58 @@ public class Bishop extends Piece
 		//Up right
 		if(goalX > super.getXLocation() && goalY < super.getYLocation())
 		{
-			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX < goalX && newY < goalY; newX++, newY++)
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX < goalX && newY > goalY; newX++, newY++)
 			{
 				//Check if there is a piece
-				if(board.bl[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
-			//Now check if there is a piece, if friendly or enemy
-			if(board.bl[goalX][goalY].getHasPiece())
-			{
-				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
-					return false;
-				else
-					return true;
-			}
-			else
-				return true;	//return true if there is no piece in the spot we are trying to move to
-
+      return true;			
 		}
 		//Down right
 		else if(goalX > super.getXLocation() && goalY > super.getYLocation())
 		{
-			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX++, newY--)
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX < goalX && newY < goalY; newX++, newY--)
 			{
 				//Check if there is a piece
-				if(board.bl[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
-			//Now check if there is a piece, if friendly or enemy
-			if(board.bl[goalX][goalY].getHasPiece())
-			{
-				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
-					return false;
-				else
-					return true;
-			}
-			else
-				return true;	//return true if there is no piece in the spot we are trying to move to
-
+      return true;
 		}
+    //Down left
 		else if(goalX < super.getXLocation() && goalY > super.getYLocation())
 		{
-			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() + 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX--, newY++)
+			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() + 1; newX > goalX && newY < goalY; newX--, newY++)
 			{
 				//Check if there is a piece
-				if(board.bl[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
-			//Now check if there is a piece, if friendly or enemy
-			if(board.bl[goalX][goalY].getHasPiece())
-			{
-				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
-					return false;
-				else
-					return true;
-			}
-			else
-				return true;	//return true if there is no piece in the spot we are trying to move to
-
+			return true;
 		}
+    //Up left
 		else if(goalX < super.getXLocation() && goalY < super.getYLocation())
 		{
-			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() - 1; newX > -1 && newX < 8 && newY > -1 && newY < 8; newX--, newY--)
+			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() - 1; newX < goalX && newY < goalY; newX--, newY--)
 			{
 				//Check if there is a piece
-				if(board.bl[newX][newY].getHasPiece())
+				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
 				{
 					//if there is a piece it is not a valid move because there is a piece in the way of the path to the goal coordinates
 					return false;
 				}
 			}
-			//Now check if there is a piece, if friendly or enemy
-			if(board.bl[goalX][goalY].getHasPiece())
-			{
-				if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
-					return false;
-				else
-					return true;
-			}
-			else
-				return true;	//return true if there is no piece in the spot we are trying to move to
+			return true;
 		}
 
 		//return false if coord was not a valid location to move

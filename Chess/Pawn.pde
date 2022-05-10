@@ -71,15 +71,12 @@ public class Pawn extends Piece
     board.showPossibleMoves(possibleMoves);
   }
   
-  boolean checkSpotValid(int x, int y)
+  public boolean checkSpotValid(int goalX, int goalY)
   {
    for (Block foo: possibleMoves)
    {
-    if (foo.getBlock() == ((x + 1) * (y + 1) - 1))
-    {
-      System.out.println((x + 1) * (y + 1) - 1);
+    if (foo.getBlock() == (goalX) + (goalY * 8))
       return true;
-    }
    }
    return false;
   }

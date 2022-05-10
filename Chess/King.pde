@@ -118,7 +118,7 @@ public class King extends Piece
         return false;
       }
 
-      if(goalX < 0 && goalX > 7 || goalY < 0 || goalY > 7)
+      if(goalX < 0 || goalX > 7 || goalY < 0 || goalY > 7)
       {
         //return false if coords not on board
         return false;
@@ -130,18 +130,11 @@ public class King extends Piece
         //return false if coords are not within one space away
         return false;
       }
-
+      
+       System.out.println("H");
       //check if there is a piece, if friendly or enemy
-      if(board.bl[goalX][goalY].getHasPiece())
-      {
-        if(board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
+      if(board.bl[goalX][goalY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
           return false;
-        else
-          return true;
-      }
-      else
-      {
-        return true;  //return true if there is no piece in the spot we are trying to move to
-      }
+      return true;  //return true if there is no piece in the spot we are trying to move to
   }//end is valid move
 }//end of class

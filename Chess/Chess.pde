@@ -180,7 +180,7 @@ void mousePressed()
   // moves the piece clicked to were you have clicked
   void update(int x, int y, int newX, int newY)
   {
-    if ((!(newX == x) || !(newY == y)) && playerPieces[x][y].checkSpotValid(newX, newY))
+    if (playerPieces[x][y].checkSpotValid(newX, newY))
     {
        Piece temp = playerPieces[x][y];
        
@@ -199,7 +199,7 @@ void mousePressed()
        
        playerPieces[newX][newY].hasMoved();
        
-       drawPlayerPieces();
+       //drawPlayerPieces();
     }
     
     // sets previous clicked to neutral location
