@@ -112,7 +112,7 @@ public class King extends Piece
   public boolean checkSpotValid(int goalX, int goalY)
   {
     //Initial tests
-      if(goalX == super.getXLocation() || goalY == super.getYLocation())
+      if(goalX == super.getXLocation() && goalY == super.getYLocation())
       {
         //return false if move method attempts to move to the current location
         return false;
@@ -131,7 +131,6 @@ public class King extends Piece
         return false;
       }
       
-       System.out.println("H");
       //check if there is a piece, if friendly or enemy
       if(board.bl[goalX][goalY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
           return false;

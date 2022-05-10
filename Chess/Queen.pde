@@ -29,5 +29,12 @@ public class Queen extends Piece
     b.genPossibleMoves();
   }
 
-
+   boolean checkSpotValid(int x, int y)
+   {
+    Pawn p = new Pawn (getPieceColor(), getXLocation(), getYLocation());
+    
+    if (p.checkSpotValid(x, y))
+      return true;
+    return false;
+   }
 }//end of class

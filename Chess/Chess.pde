@@ -121,6 +121,7 @@ void mousePressed()
     playerPieces[5][7] = new Bishop("white", 5, 7);
     playerPieces[3][7] = new Queen("white", 3, 7);
     playerPieces[4][7] = new King("white", 4, 7);
+    
     /*
     At this point all the peices for the white player should be created and set on the board
     while being added to the array of player peices for player 1

@@ -45,7 +45,7 @@ public class Bishop extends Piece
 		//Up right
 		if(goalX > super.getXLocation() && goalY < super.getYLocation())
 		{
-			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX < goalX && newY > goalY; newX++, newY++)
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() - 1; newX <= goalX && newY >= goalY; newX++, newY--)
 			{
 				//Check if there is a piece
 				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
@@ -59,7 +59,7 @@ public class Bishop extends Piece
 		//Down right
 		else if(goalX > super.getXLocation() && goalY > super.getYLocation())
 		{
-			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX < goalX && newY < goalY; newX++, newY--)
+			for(int newX = super.getXLocation() + 1, newY = super.getYLocation() + 1; newX <= goalX && newY <= goalY; newX++, newY++)
 			{
 				//Check if there is a piece
 				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
@@ -73,7 +73,7 @@ public class Bishop extends Piece
     //Down left
 		else if(goalX < super.getXLocation() && goalY > super.getYLocation())
 		{
-			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() + 1; newX > goalX && newY < goalY; newX--, newY++)
+			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() + 1; newX >= goalX && newY <= goalY; newX--, newY++)
 			{
 				//Check if there is a piece
 				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))
@@ -87,7 +87,7 @@ public class Bishop extends Piece
     //Up left
 		else if(goalX < super.getXLocation() && goalY < super.getYLocation())
 		{
-			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() - 1; newX < goalX && newY < goalY; newX--, newY--)
+			for(int newX = super.getXLocation() - 1, newY = super.getYLocation() - 1; newX <= goalX && newY <= goalY; newX--, newY--)
 			{
 				//Check if there is a piece
 				if(board.bl[newX][newY].getHasPiece() && board.bl[goalX][goalY].getPColor().equalsIgnoreCase(super.getPieceColor()))

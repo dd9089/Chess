@@ -102,5 +102,14 @@ public class Rook extends Piece
      
     board.showPossibleMoves(possibleMoves);
   }
+  
+  boolean checkSpotValid(int x, int y)
+  {
+   Pawn p = new Pawn (getPieceColor(), getXLocation(), getYLocation());
+   
+   if (p.checkSpotValid(x, y))
+     return true;
+   return false;
+  }
 
 }//end class
