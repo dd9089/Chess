@@ -136,4 +136,10 @@ public class King extends Piece
           return false;
       return true;  //return true if there is no piece in the spot we are trying to move to
   }//end is valid move
+  
+  //looks for if the king is in check
+  public boolean inCheck()
+  {
+    
+  }
 }//end of class
