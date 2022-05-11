@@ -6,7 +6,6 @@ public class Pawn extends Piece
   //Variables
   private String pieceName = "Pawn";
 
-
   //Constructor
   public Pawn(String c, int x, int y)
   {
@@ -36,7 +35,29 @@ public class Pawn extends Piece
         
         // if the block 2 blocks infront of piece doesnt have a piece
         if (!board.bl[xCordinate][yCordinate - 2].getHasPiece() && getFirstTurn())
+        {
           possibleMoves.add(board.bl[xCordinate][yCordinate - 2]);
+          setMovedTwo();
+        }
+      }
+      
+      //en passant
+      if (xCordinate > 0 && board.bl[xCordinate - 1][yCordinate].getHasPiece() && !board.bl[xCordinate - 1][yCordinate].getPColor().equals(getPieceColor()))
+      {
+       if (playerPieces[xCordinate - 1][yCordinate].getMovedTwo())
+       {
+         possibleMoves.add(board.bl[xCordinate - 1][yCordinate - 1]);
+         enPassant = true;
+       }
+      }
+      
+      if (xCordinate < 7 && board.bl[xCordinate + 1][yCordinate].getHasPiece() && !board.bl[xCordinate + 1][yCordinate].getPColor().equals(getPieceColor()))
+      {
+       if (playerPieces[xCordinate + 1][yCordinate].getMovedTwo())
+       {
+         possibleMoves.add(board.bl[xCordinate + 1][yCordinate - 1]);
+         enPassant = true;
+       }
       }
       
       // if there is a black piece diagonally right of the pawn
@@ -57,7 +78,29 @@ public class Pawn extends Piece
         
         // if the block 2 blocks infront of piece doesnt have a piece
         if (!board.bl[xCordinate][yCordinate + 2].getHasPiece() && getFirstTurn())
+        {
           possibleMoves.add(board.bl[xCordinate][yCordinate + 2]);
+          setMovedTwo();
+        }
+      }
+      
+      //en passant
+      if (xCordinate > 0 && board.bl[xCordinate - 1][yCordinate].getHasPiece() && !board.bl[xCordinate - 1][yCordinate].getPColor().equals(getPieceColor()))
+      {
+       if (playerPieces[xCordinate - 1][yCordinate].getMovedTwo())
+       {
+         possibleMoves.add(board.bl[xCordinate - 1][yCordinate + 1]);
+         enPassant = true;
+       }
+      }
+      
+      if (xCordinate < 7 && board.bl[xCordinate + 1][yCordinate].getHasPiece() && !board.bl[xCordinate + 1][yCordinate].getPColor().equals(getPieceColor()))
+      {
+       if (playerPieces[xCordinate + 1][yCordinate].getMovedTwo())
+       {
+         possibleMoves.add(board.bl[xCordinate + 1][yCordinate + 1]);
+         enPassant = true;
+       }
       }
       
       // if there is a black piece diagonally left of the pawn
