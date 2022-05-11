@@ -140,6 +140,36 @@ public class King extends Piece
   //looks for if the king is in check
   public boolean inCheck()
   {
+    //looks at all the pieces and wether they are on the other side or not
+    for(Piece p: pieceArray)
+    {
+      if(!p.equals(null) && !p.getPColor().equalsIgnoreCase(super.getPieceColor()))
+      {
+        //checks if the piece can move to where the king is 
+        if(p.checkSpotValid(super.getXLocation(), super.getYLocation()))
+        {
+          return true;
+        }
+      }
+    }
+  }  
+  //looks for if the king is in check at a set of values
+  public boolean inCheck(int otherX, int otherY)
+  {
+    //looks at all the pieces and wether they are on the other side or not
+    for(Piece p: pieceArray)
+    {
+      if(!p.equals(null) && !p.getPColor().equalsIgnoreCase(super.getPieceColor()))
+      {
+        //checks if the piece can move to where the king is 
+        if(p.checkSpotValid(otherX, otherY))
+        {
+          return true;
+        }
+      }
+    }
     
+    //if nothing puts the king in check return false
+    return false;
   }
 }//end of class
