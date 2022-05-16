@@ -152,6 +152,9 @@ public class King extends Piece
         }
       }
     }
+    
+    //if nothing puts the king in check return false
+    return false;
   }  
   //looks for if the king is in check at a set of values
   public boolean inCheck(int otherX, int otherY)
